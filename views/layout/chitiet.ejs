@@ -1,6 +1,6 @@
 <div class="row detail">
     <div class="col s12 m6 l6">
-        <img style="max-width:100%" id="xe" src="../images/<%- chitiet.colors[0].image %>" alt="">
+        <img style="max-width:100%" id="xe" src="../images<%- chitiet.colors[0].image %>" alt="">
         <div class="list-color">
             <ul>
                 <p class="txt-color"><%- chitiet.colors[0].name %></p>
@@ -8,7 +8,7 @@
                     var dataColor = chitiet.colors[i]
                     %>
                     <li>
-                        <span data-img="../images/<%- dataColor.image%>" data-cl="<%- dataColor.name%>" data-price="<%- dataColor.price%> <sup>VND</sup>" style="background-color:<%- dataColor.value %>"></span>
+                        <span data-img="../images<%- dataColor.image%>" data-cl="<%- dataColor.name%>" data-price="<%- dataColor.price%> <sup>VND</sup>" style="background-color:<%- dataColor.value %>"></span>
                     </li>
                     <% } %>
 
@@ -91,7 +91,7 @@
 
                     <div class="card">
                         <div class="card-image">
-                            <img src="../images/<%- tn.content[y].img %>">
+                            <img src="../images<%- tn.content[y].img %>">
                         </div>
                         <div class="card-content">
                             <p>
