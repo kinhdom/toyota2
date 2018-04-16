@@ -46,6 +46,15 @@ app.get('/', (req, res) => {
         for(var i=0;i<arrDongXe.length;i++){
             arrDongXe[i].cars = arrXe.filter(xe => xe.dong_xe_url == arrDongXe[i].dong_xe_url)
         }
+        arrDongXe.sort(function sortDongXe(mot,hai){
+            if(mot.cars.length > hai.cars.length){
+                return -1
+            }
+            if(mot.cars.length < hai.cars.length){
+                return 1
+            }
+            return 0
+        })
         res.render('index', { layout: 'trangchu', arrDongXe: arrDongXe })
 
     })
@@ -58,7 +67,6 @@ function containsObject(obj, list) {
             return true;
         }
     }
-
     return false;
 }
 app.get('/dong-xe/:name', (req, res) => {
@@ -102,9 +110,7 @@ var download = function (uri, callback) {
 
 app.get('/xe/:url_xe', (req, res) => {
     db.toyota2.find({ url: req.params.url_xe }, (err, docs) => {
-        console.log(docs)
         res.render('index', { layout: 'chitiet', chitiet: docs[0] })
-
     })
 })
 app.get('/addxe', (req, res) => {
