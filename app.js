@@ -5,8 +5,10 @@ const request = require('request');
 const cheerio = require('cheerio')
 const db = require('./db')
 const path = require('path');
-
+const fs = require('fs');
+const shell = require('shelljs');
 const Xe = require('./xe.class')
+
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +29,7 @@ app.get('/lien-he', (req, res) => {
 app.get('/ho-tro-tra-gop', (req, res) => {
     res.render('index', { layout: 'ho-tro-tra-gop' })
 })
+
 app.get('/', (req, res) => {
     // Hiển thị xe
     db.toyota.find({}, (err, arrDongXe) => {
@@ -52,8 +55,32 @@ app.get('/dong-xe/:name', (req, res) => {
     })
 
 })
-app.get('/xe/:url_xe', (req, res) => {
 
+
+app.get('/downloadimage', (req, res) => {
+    download('http://www.toyota.com.vn/data/news/1766/_3/thumb_1ucm0s.png?w=334&h=240&mode=crop', () => {
+        console.log('done')
+    })
+    res.json({ a: 3 })
+})
+var download = function (uri, callback) {
+    let filename = uri.split('/').pop()
+    if (filename.indexOf('?') != -1) {
+        filename = filename.substr(0, filename.indexOf('?'))
+    }
+    let start = uri.indexOf('com.vn/') + 7
+    let end = uri.indexOf(filename)
+    let dir = './public/images/' + uri.slice(start, end)
+    if (!fs.existsSync(dir)) {
+        shell.mkdir('-p', dir);
+    }
+    let fullPath = dir + filename
+    request.head(uri, function (err, res, body) {
+        request(uri).pipe(fs.createWriteStream(fullPath)).on('close', callback);
+    });
+};
+
+app.get('/xe/:url_xe', (req, res) => {
     request('http://www.toyota.com.vn/' + req.params.url_xe, (err, respoonse, body) => {
         if (err) {
             console.log('Loi: ' + err)
@@ -65,7 +92,9 @@ app.get('/xe/:url_xe', (req, res) => {
             // Cover Image
             let thumbnailx = $('.img_box img[data-original]').attr('data-original')
             let thumbnail = thumbnailx.substr(0, thumbnailx.indexOf('?'))
-
+            // download('http://www.toyota.com.vn' + thumbnail, () => {
+            //     console.log('Done thumbnail')
+            // })
             // Color
             let list_color = $(body).find("div.list-color")
             // Detail
@@ -91,6 +120,17 @@ app.get('/xe/:url_xe', (req, res) => {
             for (var i = 0; i < images_ngoai_that.length; i++) {
                 arrImages_ngoai_that.push({ src: $(images_ngoai_that[i]).attr('data-src') })
             }
+            // if (arrImages_ngoai_that) {
+            //     arrImages_ngoai_that.forEach(element => {
+            //         if (element.src) {
+            //             download('http://www.toyota.com.vn' + element.src, () => {
+            //                 console.log('Done img ngoai that')
+            //             })
+
+            //         }
+            //     });
+            // }
+
             let ngoai_that_detail = {
                 description: $(ngoai_that_html).find("p.txt_dt_2").text(),
                 title: $(ngoai_that_html).find("p.txt_dt").text(),
@@ -103,6 +143,14 @@ app.get('/xe/:url_xe', (req, res) => {
             for (var i = 0; i < images_noi_that.length; i++) {
                 arrImages_noi_that.push({ src: $(images_noi_that[i]).attr('data-src') })
             }
+            // arrImages_noi_that.forEach(element => {
+            //     if (element.src) {
+            //         download('http://www.toyota.com.vn' + element.src, () => {
+            //             console.log('Done img noi that')
+            //         })
+            //     }
+
+            // });
             let noi_that_detail = {
                 description: $(noi_that_html).find("p.txt_dt_2").text(),
                 title: $(noi_that_html).find("p.txt_dt").text(),
@@ -122,8 +170,16 @@ app.get('/xe/:url_xe', (req, res) => {
                         title: $(inner).find(".txt1").text(),
                         description: $(inner).find(".txt2").text(),
                     })
-                })
 
+                })
+                // arr_content.forEach(element => {
+                //     if (element.img) {
+                //         download('http://www.toyota.com.vn' + element.img, () => {
+                //             console.log('Done img tinh nang')
+                //         })
+                //     }
+
+                // });
                 arr_tinh_nang.push({
                     name: $(tabs_tinh_nang[i]).text(),
                     content: arr_content
@@ -175,7 +231,13 @@ app.post('/addxe', (req, res) => {
             xe.url = url_xe_toyota.substr(url_xe_toyota.indexOf('com.vn/') + 7)
             xe.name = $(body).find("#spTitleCar").text()
             xe.price = parseInt($(body).find(".price_detail").text().split('.').join(''))
-            xe.thumbnail = $('meta[property="og:image"]').prop('content')
+            let ogImage = $('meta[property="og:image"]').prop('content')
+
+            download(ogImage, () => {
+                console.log('Downloaded')
+            })
+            xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
+
             let colors = $('span[data-cl]')
             for (var i = 0; i < colors.length; i++) {
                 let background_color = $(colors[i]).attr('style')
@@ -197,8 +259,11 @@ app.post('/addxe', (req, res) => {
                 nhien_lieu: nhien_lieu.substr(nhien_lieu.indexOf(':') + 1).trim(),
                 xuat_xu: xuat_xu.substr(xuat_xu.indexOf(':') + 1).trim()
             })
-            xe.dongxe_name = req.body.dong_xe
-            xe.dongxe_url = generateUrl(req.body.dong_xe)
+            // db.toyota.insert({
+            //     dong_xe_name: req.body.dong_xe,
+            //     dong_xe_url: generateUrl(req.body.dong_xe),
+            //     cars: []
+            // })
             let url_thu_vien = url_xe_toyota + '/thuvien?name=' + xe.name + '&gallery=thuvien'
             request(url_thu_vien, (errTV, responseTV, bodyTV) => {
                 if (errTV) {
@@ -208,7 +273,11 @@ app.post('/addxe', (req, res) => {
                     let imgs = $TV('.open_popup_pc img')
                     for (var i = 0; i < imgs.length; i++) {
                         let img = $(imgs[i]).attr('src')
-                        xe.images.push('http://www.toyota.com.vn' + img.substr(0, img.indexOf('?')))
+                        let full_img = img.substr(0, img.indexOf('?'))
+                        xe.images.push(full_img)
+                        download('http://www.toyota.com.vn' + full_img, () => {
+                            console.log('Downloaded '+full_img)
+                        })
                     }
                     db.toyota.find({ dong_xe_name: req.body.dong_xe }, (err, docs) => {
                         docs[0].cars.push(xe)

@@ -1,6 +1,6 @@
 <div class="row detail">
     <div class="col s12 m6 l6">
-        <img style="max-width:100%" id="xe" src="http://www.toyota.com.vn/<%- chitiet.thumbnail %>" alt="">
+        <img style="max-width:100%" id="xe" src="../images/<%- chitiet.thumbnail %>" alt="">
         <%- chitiet.list_color %>
     </div>
     <div class="container">
@@ -79,8 +79,7 @@
 
                     <div class="card">
                         <div class="card-image">
-                            <img src="http://www.toyota.com.vn/<%- tinh_nang.content[y].img %>">
-
+                            <img src="../images/<%- tinh_nang.content[y].img %>">
                         </div>
                         <div class="card-content">
                             <p>
@@ -112,7 +111,7 @@
         </p>
         <div class="owl-carousel">
             <% chitiet.ngoai_that_detail.images.forEach(function(e){ %>
-                <img width="500" src="http://www.toyota.com.vn/<%- e.src %>" alt="">
+                <img width="500" src="../images<%- e.src %>" alt="">
                 <% }) %>
         </div>
     </div>
@@ -129,7 +128,7 @@
         </p>
         <div class="owl-carousel">
             <% chitiet.noi_that_detail.images.forEach(function(e){ %>
-                <img src="http://www.toyota.com.vn/<%- e.src %>" alt="">
+                <img src="../images<%- e.src %>" alt="">
                 <% }) %>
         </div>
 
