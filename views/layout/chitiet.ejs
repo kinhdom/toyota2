@@ -1,62 +1,74 @@
 <div class="row detail">
     <div class="col s12 m6 l6">
         <img style="max-width:100%" id="xe" src="../images/<%- chitiet.thumbnail %>" alt="">
-        <%- chitiet.list_color %>
+        <div class="list-color">
+            <ul>
+                <p class="txt-color">Bạc - 1D4</p>
+                <% for(var i =0;i<chitiet.colors.length;i++){ 
+                    var dataColor = chitiet.colors[i]
+                    %>
+                    <li>
+                        <span data-img="../images/<%- dataColor.image%>" data-cl="<%- dataColor.name%>" data-price="<%- dataColor.price%> <sup>VND</sup>" style="background-color:<%- dataColor.value %>"></span>
+                    </li>
+                    <% } %>
+
+            </ul>
+        </div>
     </div>
     <div class="container">
-        
-    <div class="col s12 m6 l6">
-        <table class="highlight">
-            <thead>
-                <tr>
-                    <th>
-                        <h5>
-                            <%- chitiet.detail.name %>
-                        </h5>
-                        <span class="red-text">
-                            <%- chitiet.detail.price%>
-                        </span>
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
 
-            </thead>
+        <div class="col s12 m6 l6">
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th>
+                            <h5>
+                                <%- chitiet.name %>
+                            </h5>
+                            <span class="red-text price">
+                                <%- chitiet.price%>
+                            </span>
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
 
-            <tbody>
-                <tr>
-                    <td>Số chỗ ngồi:</td>
-                    <td>
-                        <%- chitiet.detail.so_cho_ngoi%>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Kiểu dáng:</td>
-                    <td>
-                        <%- chitiet.detail.kieu_dang%>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Nhiên liệu:</td>
-                    <td>
-                        <%- chitiet.detail.nhien_lieu%>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Xuất xứ:</td>
-                    <td>
-                        <%- chitiet.detail.xuat_xu%>
-                    </td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Số chỗ ngồi:</td>
+                        <td>
+                            <%- chitiet.description.so_cho_ngoi%>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Kiểu dáng:</td>
+                        <td>
+                            <%- chitiet.description.kieu_dang%>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Nhiên liệu:</td>
+                        <td>
+                            <%- chitiet.description.nhien_lieu%>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Xuất xứ:</td>
+                        <td>
+                            <%- chitiet.description.xuat_xu%>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-
-</div>
 </div>
 
 <!-- Tinh nang noi bat -->
@@ -65,30 +77,30 @@
     <div class="container">
         <h2>Tinh Nang Noi Bat</h2>
         <ul id="tabs-swipe-demo" class="tabs">
-            <% chitiet.arr_tinh_nang.forEach(function(tinh_nang,i){ %>
+            <% chitiet.tinh_nang.forEach(function(tn,i){ %>
                 <li class="tab col s3">
                     <a href="#<%- i %>">
-                        <%- tinh_nang.name %>
+                        <%- tn.name %>
                     </a>
                 </li>
                 <% }) %>
         </ul>
-        <% chitiet.arr_tinh_nang.forEach(function(tinh_nang,i){ %>
+        <% chitiet.tinh_nang.forEach(function(tn,i){ %>
             <div id="<%- i %>" class="owl-carousel">
-                <% for(var y=1;y<tinh_nang.content.length;y++){ %>
+                <% for(var y=1;y<tn.content.length;y++){ %>
 
                     <div class="card">
                         <div class="card-image">
-                            <img src="../images/<%- tinh_nang.content[y].img %>">
+                            <img src="../images/<%- tn.content[y].img %>">
                         </div>
                         <div class="card-content">
                             <p>
-                                <%- tinh_nang.content[y].description %>
+                                <%- tn.content[y].description %>
                             </p>
                         </div>
                         <div class="card-action">
                             <span class="card-title">
-                                <%- tinh_nang.content[y].title %>
+                                <%- tn.content[y].title %>
                             </span>
                         </div>
                     </div>
@@ -104,13 +116,13 @@
     <div class="container">
         <h3>NGOAI THAT</h3>
         <h5>
-            <%- chitiet.ngoai_that_detail.title %>
+            <%- chitiet.ngoai_that.title %>
         </h5>
         <p>
-            <%- chitiet.ngoai_that_detail.description %>
+            <%- chitiet.ngoai_that.description %>
         </p>
         <div class="owl-carousel">
-            <% chitiet.ngoai_that_detail.images.forEach(function(e){ %>
+            <% chitiet.ngoai_that.images.forEach(function(e){ %>
                 <img width="500" src="../images<%- e.src %>" alt="">
                 <% }) %>
         </div>
@@ -121,13 +133,13 @@
     <div class="container">
         <h3>NỘI THẤT</h3>
         <h5>
-            <%- chitiet.noi_that_detail.title %>
+            <%- chitiet.noi_that.title %>
         </h5>
         <p>
-            <%- chitiet.noi_that_detail.description %>
+            <%- chitiet.noi_that.description %>
         </p>
         <div class="owl-carousel">
-            <% chitiet.noi_that_detail.images.forEach(function(e){ %>
+            <% chitiet.noi_that.images.forEach(function(e){ %>
                 <img src="../images<%- e.src %>" alt="">
                 <% }) %>
         </div>
@@ -187,11 +199,10 @@
         $('.tabs').tabs();
         $('.list-color ul li span').click(function (e) {
             $(this).parent().addClass('selected').siblings().removeClass('selected');
-            console.log(e.target.attributes[0].value)
-
             $('.txt-color').text(e.target.attributes[1].value)
-            $('#xe').attr('src', 'http://www.toyota.com.vn/' + e.target.attributes[0].value)
+            $('#xe').attr('src', e.target.attributes[0].value)
         })
     });
 </script>
+<script src="../js/formatMoney.js"></script>
 <link rel="stylesheet" href="../css/chitiet.css">
