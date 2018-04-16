@@ -1,29 +1,36 @@
-<form action="/addxe" method="POST">
-    <div class="form-group">
-        <label>Url xe toyota</label>
-        <input name="url_xe_toyota" type="text" required class="form-control" placeholder="Enter name">
-    </div>
-    
-    <div class="input-field col s12">
-        <select name="dong_xe" required>
-            <option value="" >Chọn dòng xe</option>
-            <option value="Toyota Vios">Toyota Vios</option>
-            <option value="Toyota Camry">Toyota Camry</option>
-            <option value="Toyota Yaris">Toyota Yaris</option>
-            <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
-            <option value="Toyota Innova">Toyota Innova</option>
-            <option value="Toyota Fortuner">Toyota Fortuner</option>
-            <option value="Toyota Land Cruiser Prado">Toyota Land Cruiser Prado</option>
-            <option value="Toyota Land Cruiser">Toyota Land Cruiser</option>
-            <option value="Toyota Hilux">Toyota Hilux</option>
-            <option value="Toyota Hiace">Toyota Hiace</option>
-            <option value="Toyota Alphard">Toyota Alphard</option>
-        </select>
-    </div>
-    
-    <button type="submit" class="btn btn-outline-primary">Submit</button>
+<div class="container">
 
-</form>
+    <div class="card-panel">
+
+        <form action="/addxe" method="POST">
+            <div class="form-group">
+                <label>Url xe toyota</label>
+                <input name="url_xe_toyota" type="text" required class="form-control" placeholder="Enter name">
+            </div>
+
+            <div class="input-field col s12">
+                <select name="dong_xe" required>
+                    <option value="">Chọn dòng xe</option>
+                    <option value="Toyota Vios">Toyota Vios</option>
+                    <option value="Toyota Camry">Toyota Camry</option>
+                    <option value="Toyota Yaris">Toyota Yaris</option>
+                    <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
+                    <option value="Toyota Innova">Toyota Innova</option>
+                    <option value="Toyota Fortuner">Toyota Fortuner</option>
+                    <option value="Toyota Land Cruiser Prado">Toyota Land Cruiser Prado</option>
+                    <option value="Toyota Land Cruiser">Toyota Land Cruiser</option>
+                    <option value="Toyota Hilux">Toyota Hilux</option>
+                    <option value="Toyota Hiace">Toyota Hiace</option>
+                    <option value="Toyota Alphard">Toyota Alphard</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+
+        </form>
+
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         $('select').formSelect();
