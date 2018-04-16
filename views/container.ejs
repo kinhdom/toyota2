@@ -1,0 +1,24 @@
+<div class="icon-mobile hide-on-large-only" >
+        <a class="telhref grey white-text" href="tel:0908793339">
+                <i item-width="100" class="material-icons">phone_in_talk</i>
+                0908 793 339
+        </a>
+    </div>
+    
+<div>
+    <% if (layout == 'dongxe') { %>
+        <%- include('layout/dongxe',{dataDongXe:dataDongXe}) %>
+    <% } %>
+
+    <% if (layout == 'chitiet') { %>
+        <%- include('layout/chitiet',{chitiet:chitiet}) %>
+    <% } %>
+
+    <% if (layout == 'trangchu') { %>
+        <%- include('layout/trangchu') %>
+    <% } %>
+
+    <% if (layout == 'addxe') { %>
+        <%- include('layout/addxe') %>
+    <% } %>
+</div>

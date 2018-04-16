@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="../css/lienhe.css">
+<h3>LIEN HE</h3>
+<div class="row lienhe">
+    <div class="col s12 m6 l6">
+        <div class="profile">
+            <img id="avatar" src="http://toyota01.com/data/dealer/86/z922932326946_a74cb6fb1fb92f1b0f5c146ed4561641.jpg" alt="" width="100%">
+        </div>
+    </div>
+    <div class="col s12 m6 l6">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="ho_ten" type="text" class="validate">
+                <label for="ho_ten" class="white-text">Ho ten</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="dien_thoai" type="text" class="validate">
+                <label for="dien_thoai" class="white-text">Dien thoai</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="noi_dung" type="text" class="validate">
+                <label for="noi_dung" class="white-text">Noi Dung</label>
+            </div>
+        </div>
+        <div class="row">
+            <a class="waves-effect waves-light btn" id="send">
+                <i class="material-icons left">send</i>send</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#send').click(function () {
+            let ho_ten = $('input[id=ho_ten]').val()
+            swal("Cảm ơn " + ho_ten, "Chúng tôi sẽ liên hệ bạn trong thời gian sớm nhất", "success");
+        })
+    })
+</script>

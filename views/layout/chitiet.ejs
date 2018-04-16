@@ -1,0 +1,198 @@
+<div class="row detail">
+    <div class="col s12 m6 l6">
+        <img style="max-width:100%" id="xe" src="http://www.toyota.com.vn/<%- chitiet.thumbnail %>" alt="">
+        <%- chitiet.list_color %>
+    </div>
+    <div class="container">
+        
+    <div class="col s12 m6 l6">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>
+                        <h5>
+                            <%- chitiet.detail.name %>
+                        </h5>
+                        <span class="red-text">
+                            <%- chitiet.detail.price%>
+                        </span>
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Số chỗ ngồi:</td>
+                    <td>
+                        <%- chitiet.detail.so_cho_ngoi%>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Kiểu dáng:</td>
+                    <td>
+                        <%- chitiet.detail.kieu_dang%>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Nhiên liệu:</td>
+                    <td>
+                        <%- chitiet.detail.nhien_lieu%>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Xuất xứ:</td>
+                    <td>
+                        <%- chitiet.detail.xuat_xu%>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+
+<!-- Tinh nang noi bat -->
+
+<div id="tinh_nang_noi_bat" class="grey lighten-4">
+    <div class="container">
+        <h2>Tinh Nang Noi Bat</h2>
+        <ul id="tabs-swipe-demo" class="tabs">
+            <% chitiet.arr_tinh_nang.forEach(function(tinh_nang,i){ %>
+                <li class="tab col s3">
+                    <a href="#<%- i %>">
+                        <%- tinh_nang.name %>
+                    </a>
+                </li>
+                <% }) %>
+        </ul>
+        <% chitiet.arr_tinh_nang.forEach(function(tinh_nang,i){ %>
+            <div id="<%- i %>" class="owl-carousel">
+                <% for(var y=1;y<tinh_nang.content.length;y++){ %>
+
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="http://www.toyota.com.vn/<%- tinh_nang.content[y].img %>">
+
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                <%- tinh_nang.content[y].description %>
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <span class="card-title">
+                                <%- tinh_nang.content[y].title %>
+                            </span>
+                        </div>
+                    </div>
+                    <% } %>
+
+            </div>
+            <% }) %>
+    </div>
+</div>
+
+<!-- Ngoai that -->
+<div id="ngoai_that">
+    <div class="container">
+        <h3>NGOAI THAT</h3>
+        <h5>
+            <%- chitiet.ngoai_that_detail.title %>
+        </h5>
+        <p>
+            <%- chitiet.ngoai_that_detail.description %>
+        </p>
+        <div class="owl-carousel">
+            <% chitiet.ngoai_that_detail.images.forEach(function(e){ %>
+                <img width="500" src="http://www.toyota.com.vn/<%- e.src %>" alt="">
+                <% }) %>
+        </div>
+    </div>
+</div>
+<!-- Noi THAT -->
+<div id="noi_that" class="grey lighten-4">
+    <div class="container">
+        <h3>NỘI THẤT</h3>
+        <h5>
+            <%- chitiet.noi_that_detail.title %>
+        </h5>
+        <p>
+            <%- chitiet.noi_that_detail.description %>
+        </p>
+        <div class="owl-carousel">
+            <% chitiet.noi_that_detail.images.forEach(function(e){ %>
+                <img src="http://www.toyota.com.vn/<%- e.src %>" alt="">
+                <% }) %>
+        </div>
+
+    </div>
+</div>
+<div class="divider"></div>
+
+<div id="thong_so_ky_thuat">
+    <div class="container">
+        <h3>THÔNG SỐ KỸ THUẬT</h3>
+        <ul class="collapsible">
+            <% chitiet.thong_so_ky_thuat.forEach(function(e){ %>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">add</i>
+                        <%- e.name %>
+                    </div>
+                    <div class="collapsible-body">
+                        <span>
+                            <%- e.content %>
+                        </span>
+                    </div>
+                </li>
+                <% }) %>
+        </ul>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+        $(".owl-carousel").owlCarousel({
+            stagePadding: 50,
+            loop: true,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 2
+                }
+            }
+
+        });
+        $('.carousel').carousel({
+            fullWidth: true,
+            indicators: true,
+            padding: 6,
+            numVisible: 5
+        });
+        $('.tabs').tabs();
+        $('.list-color ul li span').click(function (e) {
+            $(this).parent().addClass('selected').siblings().removeClass('selected');
+            console.log(e.target.attributes[0].value)
+
+            $('.txt-color').text(e.target.attributes[1].value)
+            $('#xe').attr('src', 'http://www.toyota.com.vn/' + e.target.attributes[0].value)
+        })
+    });
+</script>
+<link rel="stylesheet" href="../css/chitiet.css">

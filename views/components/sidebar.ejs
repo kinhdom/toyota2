@@ -1,0 +1,34 @@
+<style>
+    a {
+        font-size: 90%
+    }
+</style>
+<div class="card-panel">
+                <h5>
+                        <i class="material-icons">filter_list</i>   Cac dong xe
+                </h5>
+
+            <hr>
+    <table class="highlight">
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0;i<arrDongXe.length;i++){ %>
+                <tr>
+                    <td>
+                        <a href="./dong-xe/<%-arrDongXe[i].dong_xe_url %>">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                            <%- arrDongXe[i].dong_xe_name %>
+                                (
+                                <%- arrDongXe[i].cars.length %> )
+                        </a>
+                    </td>
+                </tr>
+                <% } %>
+
+        </tbody>
+    </table>
+</div>
