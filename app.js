@@ -137,9 +137,9 @@ app.post('/addxe', (req, res) => {
             xe.price = parseInt($(body).find(".price_detail").text().split('.').join(''))
             let ogImage = $('meta[property="og:image"]').prop('content')
             xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
-            // download(ogImage, () => {
-            //     console.log('Downloaded')
-            // })
+            download(ogImage, () => {
+                console.log('Downloaded')
+            })
 
 
             let colors = $('span[data-cl]')
@@ -151,7 +151,7 @@ app.post('/addxe', (req, res) => {
                     value: background_color.substr(background_color.indexOf('#'), 7),
                     image: $(colors[i]).attr('data-img').substr(0, $(colors[i]).attr('data-img').indexOf('?'))
                 })
-                download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img').substr(0, $(colors[i]).attr('data-img').indexOf('?')), () => {
+                download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
                     console.log('done image color')
                 })
             }
@@ -255,9 +255,9 @@ app.post('/addxe', (req, res) => {
                         let img = $(imgs[i]).attr('src')
                         let full_img = img.substr(0, img.indexOf('?'))
                         xe.images.push(full_img)
-                        // download('http://www.toyota.com.vn' + full_img, () => {
-                        //     console.log('Downloaded ' + full_img)
-                        // })
+                        download('http://www.toyota.com.vn' + full_img+'?w=500', () => {
+                            console.log('Downloaded ' + full_img)
+                        })
                     }
                     db.toyota2.insert(xe)
 
