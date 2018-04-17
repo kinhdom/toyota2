@@ -21,13 +21,13 @@ app.set('view engine', 'ejs')
 // app.set("view options", { layout: "mylayout.ejs" });
 
 app.get('/gioi-thieu', (req, res) => {
-    res.render('index', { layout: 'baiviet', content: 'noi dung gioi thieu' })
+    res.render('index', { layout: 'baiviet', content: 'gioi_thieu' })
 })
 app.get('/lien-he', (req, res) => {
-    res.render('index', { layout: 'baiviet', content: 'noi dung lien he' })
+    res.render('index', { layout: 'baiviet', content: 'lien_he' })
 })
 app.get('/ho-tro-tra-gop', (req, res) => {
-    res.render('index', { layout: 'baiviet', content: 'noi dung ho tro tra gop' })
+    res.render('index', { layout: 'baiviet', content: 'tra_gop' })
 })
 
 app.get('/', (req, res) => {

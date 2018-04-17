@@ -1,4 +1,16 @@
 <div class="container">
-    <h5> <%- content %> </h5>
 
+
+    <% if(content == 'gioi_thieu'){ %>
+        <%- include('../components/baiviet/gioi_thieu.ejs')%>
+    <% } %>
+    <% if(content == 'lien_he'){ %>
+        <%- include('../components/baiviet/lien_he.ejs')%>
+    <% } %>
+    <% if(content == 'tra_gop'){ %>
+        <%- include('../components/baiviet/tra_gop.ejs')%>
+    <% } %>
+
+
+    
 </div>
