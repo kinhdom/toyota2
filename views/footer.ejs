@@ -1,23 +1,27 @@
 <footer class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-                <%- include('components/lienhe');%>
-            </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Contact</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">542 Trường Chinh, Pleiku, Gia Lai</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">0907 85 77 87 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">kd.toyotagialai@gmail.com</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <div class="container">
-          © 2014 Copyright Text
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-          </div>
-        </div>
-      </footer>
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <%- include('components/profile');%>
+      </div>
+      <div class="col l6 s12">
+        <%- include('components/lienhe');%>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2014 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  $(document).ready(function () {
+    $('#send').click(function () {
+      let ho_ten = $('input[id=ho_ten]').val()
+      swal("Cảm ơn " + ho_ten, "Chúng tôi sẽ liên hệ bạn trong thời gian sớm nhất", "success");
+    })
+  })
+</script>

@@ -1,76 +1,40 @@
-<link rel="stylesheet" href="../css/lienhe.css">
-<h3>LIÊN HỆ</h3>
+<h3 class="white-text">Contact</h3>
 <hr>
-<div class="row lienhe">
-    <div class="col s12 m6 l6">
-        <div class="profile">
-            <img id="avatar" class="circle" src="https://graph.facebook.com/100003474639175/picture?width=320&height=320" alt="" width="100%">
+<ul>
+    <li>
+        <a class="grey-text text-lighten-3" href="#!">
+            <i class="material-icons">home</i>542 Trường Chinh, Pleiku, Gia Lai</a>
+    </li>
+    <li>
+        <a class="grey-text text-lighten-3" href="#!">
+            <i class="material-icons">phone_iphone</i>0907 85 77 87 2</a>
+    </li>
+    <li>
+        <a class="grey-text text-lighten-3" href="#!">
+            <i class="material-icons">email</i>kd.toyotagialai@gmail.com</a>
+    </li>
+</ul>
+<div class="col s12 m6 l6">
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="ho_ten" type="text" class="validate">
+            <label for="ho_ten" class="white-text">Ho ten</label>
         </div>
-        <ul>
-            <li>
-                <p>MR. THẮNG TOYOTA</p>
-            </li>
-            <li>
-                <p>0908793339</p>
-            </li>
-            <li>
-                <p>CÔNG TY TNHH TOYOTA GIA LAI</p>
-            </li>
-            <li>
-                <p>Mr Thắng Toyota Phú Mỹ Hưng kính chào quý khách hàng</p>
-            </li>
-            <li>
-                <p>Cam kết giá tốt nhất</p>
-            </li>
-            <li>
-                <p>Phục vụ tốt nhất</p>
-            </li>
-            <li>
-                <p>Luôn đặt sự hài lòng khách hàng là số 1</p>
-            </li>
-            <li>
-                <p>Rất hân hạnh được phục vụ!</p>
-            </li>
-        </ul>
-
-        <span> GOI NGAY HOTLINE 090909090 DE NHAN DUOC UU DAI TOT VA HO TRO TOT NHAT</span>
-
-
-
-
-
     </div>
-    <div class="col s12 m6 l6">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="ho_ten" type="text" class="validate">
-                <label for="ho_ten" class="white-text">Ho ten</label>
-            </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="dien_thoai" type="text" class="validate">
+            <label for="dien_thoai" class="white-text">Dien thoai</label>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="dien_thoai" type="text" class="validate">
-                <label for="dien_thoai" class="white-text">Dien thoai</label>
-            </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="noi_dung" type="text" class="validate">
+            <label for="noi_dung" class="white-text">Noi Dung</label>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="noi_dung" type="text" class="validate">
-                <label for="noi_dung" class="white-text">Noi Dung</label>
-            </div>
-        </div>
-        <div class="row">
-            <a class="waves-effect waves-light btn" id="send">
-                <i class="material-icons left">send</i>send</a>
-        </div>
+    </div>
+    <div class="row">
+        <a class="waves-effect waves-light btn" id="send">
+            <i class="material-icons left">send</i>send</a>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('#send').click(function () {
-            let ho_ten = $('input[id=ho_ten]').val()
-            swal("Cảm ơn " + ho_ten, "Chúng tôi sẽ liên hệ bạn trong thời gian sớm nhất", "success");
-        })
-    })
-</script>
