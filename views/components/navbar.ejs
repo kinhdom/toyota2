@@ -2,52 +2,104 @@
 
   <nav>
     <div class="nav-wrapper grey lighten-4">
-      <a href="/" class="brand-logo black-text">Logo</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul class="right hide-on-med-and-down">
-        <li>
-          <a href="/" class="black-text">HOME</a>
-        </li>
-        <li>
-          <a href="/addxe" class="black-text">ADD XE</a>
-        </li>
-        <li>
-          <a href="gioi-thieu" class="black-text">GIOI THIEU</a>
-        </li>
-        <li>
-          <a href="/ho-tro-tra-gop" class="black-text">HO TRO TRA GOP</a>
-        </li>
-        <li>
-          <a href="/lien-he" class="black-text">LIÊN HỆ</a>
-        </li>
+      <div class="row">
+        <div class="col l6">
+            <a class="waves-effect waves-light btn modal-trigger" href="#banggia">button</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+              </a>
+        </div>
+        <div class="col l6">
+            <ul class="right hide-on-med-and-down">
+                <li>
+                  <a href="/" class="black-text">HOME</a>
+                </li>
+                <li>
+                  <a href="/addxe" class="black-text">ADD XE</a>
+                </li>
+                <li>
+                  <a href="/gioi-thieu" class="black-text">GIOI THIEU</a>
+                </li>
+                <li>
+                  <a href="/ho-tro-tra-gop" class="black-text">HO TRO TRA GOP</a>
+                </li>
+                <li>
+                  <a href="/lien-he" class="black-text">LIÊN HỆ</a>
+                </li>
+              </ul>
+        </div>
+      </div>
+      <div>
         
-      </ul>
+      </div>
+      
+      
+      
     </div>
   </nav>
-
+</div>
   <ul class="sidenav" id="mobile-demo">
     <li>
-      <a href="sass.html">HOME</a>
+      <a href="/">HOME</a>
     </li>
     <li>
-      <a href="badges.html">Components</a>
+      <a href="/gioi-thieu">GIOI THIEU</a>
     </li>
     <li>
-      <a href="collapsible.html">Javascript</a>
+      <a href="/lien-he">Lien he</a>
     </li>
     <li>
-      <a href="mobile.html">Mobile</a>
+      <a href="/ho-tro-tra-gop">Ho tro tra gop</a>
     </li>
   </ul>
 
-</div>
-<script>
 
-  // Or with jQuery
 
-  $(document).ready(function () {
-    $('.sidenav').sidenav();
-  });
-</script>
+
+<%- include('components/banggia') %>
+
+  <script>
+
+    // Or with jQuery
+
+    $(document).ready(function () {
+      $('.sidenav').sidenav();
+      $('.modal').modal({
+        preventScrolling: false,
+        onOpenStart: function () {
+          $.get('/banggia', function (data) {
+            let arrCar = []
+            data.forEach(car => {
+              let price = car.price.formatMoney(0, '.', '.')
+              let newCar = $(` 
+                <tr>
+                    <td>
+                            <a href="/xe/${car.url}"> ${car.name}        </a>
+           
+                      </td>
+                    <td class="price">${price} VND</td>
+                    <td>${car.description.so_cho_ngoi}</td>
+                    <td>${car.description.nhien_lieu}</td>
+                </tr>
+            `)
+              arrCar.push(newCar)
+              $('.progress').removeClass('progress')
+            });
+            $('.tbodycar').html(arrCar)
+          })
+        },
+
+      });
+    });
+
+    Number.prototype.formatMoney = function (c, d, t) {
+      var n = this,
+        c = isNaN(c = Math.abs(c)) ? 2 : c,
+        d = d == undefined ? "." : d,
+        t = t == undefined ? "," : t,
+        s = n < 0 ? "-" : "",
+        i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+        j = (j = i.length) > 3 ? j % 3 : 0;
+      return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    };
+  </script>

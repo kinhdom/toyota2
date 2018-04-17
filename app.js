@@ -21,13 +21,13 @@ app.set('view engine', 'ejs')
 // app.set("view options", { layout: "mylayout.ejs" });
 
 app.get('/gioi-thieu', (req, res) => {
-    res.render('index', { layout: 'gioi-thieu' })
+    res.render('index', { layout: 'baiviet', content: 'noi dung gioi thieu' })
 })
 app.get('/lien-he', (req, res) => {
-    res.render('index', { layout: 'lien-he' })
+    res.render('index', { layout: 'baiviet', content: 'noi dung lien he' })
 })
 app.get('/ho-tro-tra-gop', (req, res) => {
-    res.render('index', { layout: 'ho-tro-tra-gop' })
+    res.render('index', { layout: 'baiviet', content: 'noi dung ho tro tra gop' })
 })
 
 app.get('/', (req, res) => {
@@ -43,14 +43,14 @@ app.get('/', (req, res) => {
                 arrDongXe.push(dongXe)
             }
         });
-        for(var i=0;i<arrDongXe.length;i++){
+        for (var i = 0; i < arrDongXe.length; i++) {
             arrDongXe[i].cars = arrXe.filter(xe => xe.dong_xe_url == arrDongXe[i].dong_xe_url)
         }
-        arrDongXe.sort(function sortDongXe(mot,hai){
-            if(mot.cars.length > hai.cars.length){
+        arrDongXe.sort(function sortDongXe(mot, hai) {
+            if (mot.cars.length > hai.cars.length) {
                 return -1
             }
-            if(mot.cars.length < hai.cars.length){
+            if (mot.cars.length < hai.cars.length) {
                 return 1
             }
             return 0
@@ -69,18 +69,23 @@ function containsObject(obj, list) {
     }
     return false;
 }
+app.get('/banggia',(req,res)=>{
+    db.toyota2.find().sort({price:1},function(err,docs){
+        res.json(docs)
+    })
+})
 app.get('/dong-xe/:name', (req, res) => {
     // Hiển thị xe
     const dong_xe_url = req.params.name
     db.toyota2.find({ dong_xe_url: dong_xe_url }, (err, docs) => {
         dataDongXe = {
-            dong_xe_url:docs[0].dong_xe_url,
-            dong_xe_name:docs[0].dong_xe_name,
-            cars:docs
+            dong_xe_url: docs[0].dong_xe_url,
+            dong_xe_name: docs[0].dong_xe_name,
+            cars: docs
         }
         res.render('index', { layout: 'dongxe', dataDongXe: dataDongXe })
     })
-    
+
 
 })
 
