@@ -11,9 +11,7 @@ h3{
     left: 0;
     z-index: 2;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+    padding:0 10px;
     font-size: 150%
 }
 .material-icons{
