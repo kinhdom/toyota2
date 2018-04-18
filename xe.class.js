@@ -12,6 +12,7 @@ module.exports = class Xe {
         this.tinh_nang = [];
         this.thong_so_ky_thuat = [];
         this.dong_xe_name = '';
-        this.dong_xe_url = ''
+        this.dong_xe_url = '';
+        this.arrMeta = []
     }
 }

@@ -21,13 +21,53 @@ app.set('view engine', 'ejs')
 // app.set("view options", { layout: "mylayout.ejs" });
 
 app.get('/gioi-thieu', (req, res) => {
-    res.render('index', { layout: 'baiviet', content: 'gioi_thieu' })
+    let arrMeta = [{ name: "Description", content: "Giới thiệu Toyota Gia Lai" },
+    { name: "Keywords", content: "gioi thieu, toyota, toyota gia lai" },
+    { name: "og:url", content: "http://www.toyotagialaii.com/gioi-thieu" },
+    { name: "og:type", content: "article" },
+    { name: "og:title", content: "Giới thiệu | Toyota Gia Lai" },
+    { name: "og:description", content: "Giới thiệu Toyota Gia Lai" },
+    { name: "og:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:title", content: "Giới thiệu | Toyota Gia Lai" },
+    { name: "twitter:description", content: "Giới thiệu Toyota Gia Lai" },
+    { name: "twitter:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:card", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "fragment", content: "!" },
+    { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" }]
+
+    res.render('index', { layout: 'baiviet', content: 'gioi_thieu', title: 'Giới thiệu', arrMeta: arrMeta })
 })
 app.get('/lien-he', (req, res) => {
-    res.render('index', { layout: 'baiviet', content: 'lien_he' })
+    let arrMeta = [{ name: "Description", content: "Liên hệ Toyota Gia Lai" },
+    { name: "Keywords", content: "gioi thieu, toyota, toyota gia lai" },
+    { name: "og:url", content: "http://www.toyotagialaii.com/gioi-thieu" },
+    { name: "og:type", content: "article" },
+    { name: "og:title", content: "Liên hệ | Toyota Gia Lai" },
+    { name: "og:description", content: "Liên hệ Toyota Gia Lai" },
+    { name: "og:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:title", content: "Liên hệ | Toyota Gia Lai" },
+    { name: "twitter:description", content: "Liên hệ Toyota Gia Lai" },
+    { name: "twitter:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:card", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "fragment", content: "!" },
+    { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" }]
+    res.render('index', { layout: 'baiviet', content: 'lien_he', title: 'Liên hệ', arrMeta: arrMeta })
 })
 app.get('/ho-tro-tra-gop', (req, res) => {
-    res.render('index', { layout: 'baiviet', content: 'tra_gop' })
+    let arrMeta = [{ name: "Description", content: "Hướng dẫn mua xe trả góp tại Toyota Gia Lai" },
+    { name: "Keywords", content: "mua xe tra gop, toyota, toyota gia lai" },
+    { name: "og:url", content: "http://www.toyotagialaii.com/ho-tro-tra-gop" },
+    { name: "og:type", content: "article" },
+    { name: "og:title", content: "Hỗ trợ trả góp | Toyota Gia Lai" },
+    { name: "og:description", content: "Hướng dẫn mua xe trả góp tại Toyota Gia Lai" },
+    { name: "og:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:title", content: "Hỗ trợ trả góp | Toyota Gia Lai" },
+    { name: "twitter:description", content: "Hướng dẫn mua xe trả góp tại Toyota Gia Lai" },
+    { name: "twitter:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:card", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "fragment", content: "!" },
+    { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" }]
+    res.render('index', { layout: 'baiviet', content: 'tra_gop', title: 'Hỗ trợ trả góp', arrMeta: arrMeta })
 })
 
 app.get('/', (req, res) => {
@@ -55,7 +95,19 @@ app.get('/', (req, res) => {
             }
             return 0
         })
-        res.render('index', { layout: 'trangchu', arrDongXe: arrDongXe })
+        let arrMeta = [{ name: "Description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
+        { name: "Keywords", content: "toyota, toyota viet nam, xe toyota" },
+        { property: "og:url", content: "http://www.toyotagialaii.com" },
+        { property: "og:type", content: "article" },
+        { property: "og:title", content: "Trang chủ | Toyota Gia Lai" },
+        { property: "og:description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
+        { property: "og:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+        { name: "twitter:title", content: "Trang chủ | Toyota Gia Lai" },
+        { name: "twitter:description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
+        { name: "twitter:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+        { name: "twitter:card", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" }
+        ]
+        res.render('index', { layout: 'trangchu', arrDongXe: arrDongXe, arrMeta: arrMeta, title: 'Toyota Gia Lai' })
 
     })
 
@@ -83,7 +135,16 @@ app.get('/dong-xe/:name', (req, res) => {
             dong_xe_name: docs[0].dong_xe_name,
             cars: docs
         }
-        res.render('index', { layout: 'dongxe', dataDongXe: dataDongXe })
+        let arrMeta = [{ name: "Keywords", content: docs[0].dong_xe_name },
+        { property: "og:url", content: 'http://www.toyotagialaii.com/' + docs[0].dong_xe_url },
+        { property: "og:type", content: "article" },
+        { property: "og:title", content: docs[0].dong_xe_name + ' | Toyota Gia Lai' },
+        { property: "og:image", content: "http://toyotagialaii.com/images/" + docs[0].images[0] },
+        { name: "twitter:title", content: "Vios" },
+        { name: "twitter:image", content: "http://toyotagialaii.com/images/" + docs[0].images[0] },
+        { name: "twitter:card", content: "http://toyotagialaii.com/images/" + docs[0].images[0] },
+        ]
+        res.render('index', { layout: 'dongxe', dataDongXe: dataDongXe, arrMeta: arrMeta, title: docs[0].dong_xe_name })
     })
 
 
@@ -115,11 +176,11 @@ var download = function (uri, callback) {
 
 app.get('/xe/:url_xe', (req, res) => {
     db.toyota2.find({ url: req.params.url_xe }, (err, docs) => {
-        res.render('index', { layout: 'chitiet', chitiet: docs[0] })
+        res.render('index', { layout: 'chitiet', chitiet: docs[0], arrMeta: docs[0].arrMeta, title: docs[0].name })
     })
 })
 app.get('/api/addxe', (req, res) => {
-    res.render('./index', { layout: 'addxe' })
+    res.render('./index', { layout: 'addxe',title:'Add xe',arrMeta:[] })
 })
 
 app.post('/api/addxe', (req, res) => {
@@ -130,6 +191,15 @@ app.post('/api/addxe', (req, res) => {
             alert('Fail')
         } else {
             const $ = cheerio.load(body)
+            // Meta head
+            let meta = $('meta')
+            let arrMeta = []
+            for (var i = 0; i < meta.length; i++) {
+                meta[i].attribs.content = meta[i].attribs.content.replace('Toyota Việt Nam', 'Toyota Gia Lai').replace('1800 1524', '0979 67 41 45')
+                arrMeta.push(meta[i].attribs)
+            }
+            xe.arrMeta = arrMeta
+
             xe.dong_xe_name = req.body.dong_xe
             xe.dong_xe_url = generateUrl(req.body.dong_xe)
             xe.url = url_xe_toyota.substr(url_xe_toyota.indexOf('com.vn/') + 7)
@@ -137,9 +207,9 @@ app.post('/api/addxe', (req, res) => {
             xe.price = parseInt($(body).find(".price_detail").text().split('.').join(''))
             let ogImage = $('meta[property="og:image"]').prop('content')
             xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
-            download(ogImage, () => {
-                console.log('Downloaded')
-            })
+            // download(ogImage, () => {
+            //     console.log('Downloaded')
+            // })
 
 
             let colors = $('span[data-cl]')
@@ -151,9 +221,9 @@ app.post('/api/addxe', (req, res) => {
                     value: background_color.substr(background_color.indexOf('#'), 7),
                     image: $(colors[i]).attr('data-img').substr(0, $(colors[i]).attr('data-img').indexOf('?'))
                 })
-                download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
-                    console.log('done image color')
-                })
+                // download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
+                //     console.log('done image color')
+                // })
             }
             let descriptions = $('#sec_dt_01 .txt_dt_2 span')
             let so_cho_ngoi = $(descriptions[0]).text()
@@ -255,10 +325,11 @@ app.post('/api/addxe', (req, res) => {
                         let img = $(imgs[i]).attr('src')
                         let full_img = img.substr(0, img.indexOf('?'))
                         xe.images.push(full_img)
-                        download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
-                            console.log('Downloaded ' + full_img)
-                        })
+                        // download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
+                        //     console.log('Downloaded ' + full_img)
+                        // })
                     }
+
                     db.toyota2.insert(xe)
 
                     res.redirect('/api/addxe')
