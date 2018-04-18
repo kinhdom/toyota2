@@ -180,7 +180,7 @@ app.get('/xe/:url_xe', (req, res) => {
     })
 })
 app.get('/api/addxe', (req, res) => {
-    res.render('./index', { layout: 'addxe',title:'Add xe',arrMeta:[] })
+    res.render('./index', { layout: 'addxe', title: 'Add xe', arrMeta: [] })
 })
 
 app.post('/api/addxe', (req, res) => {
@@ -207,9 +207,9 @@ app.post('/api/addxe', (req, res) => {
             xe.price = parseInt($(body).find(".price_detail").text().split('.').join(''))
             let ogImage = $('meta[property="og:image"]').prop('content')
             xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
-            // download(ogImage, () => {
-            //     console.log('Downloaded')
-            // })
+            download(ogImage, () => {
+                console.log('Downloaded')
+            })
 
 
             let colors = $('span[data-cl]')
@@ -221,9 +221,9 @@ app.post('/api/addxe', (req, res) => {
                     value: background_color.substr(background_color.indexOf('#'), 7),
                     image: $(colors[i]).attr('data-img').substr(0, $(colors[i]).attr('data-img').indexOf('?'))
                 })
-                // download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
-                //     console.log('done image color')
-                // })
+                download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
+                    console.log('done image color')
+                })
             }
             let descriptions = $('#sec_dt_01 .txt_dt_2 span')
             let so_cho_ngoi = $(descriptions[0]).text()
@@ -236,17 +236,16 @@ app.post('/api/addxe', (req, res) => {
                 nhien_lieu: nhien_lieu.substr(nhien_lieu.indexOf(':') + 1).trim(),
                 xuat_xu: xuat_xu.substr(xuat_xu.indexOf(':') + 1).trim()
             }
-            // db.toyota.insert({
-            //     dong_xe_name: req.body.dong_xe,
-            //     dong_xe_url: generateUrl(req.body.dong_xe),
-            //     cars: []
-            // })
+
 
             // Ngoai That
             arrImages_ngoai_that = []
             let ngoai_that_html = $(body).find("div#sec_dt_04")
             let images_ngoai_that = $(ngoai_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_ngoai_that.length; i++) {
+                download('http://www.toyota.com.vn' + $(images_ngoai_that[i]).attr('data-src'), () => {
+                    console.log('Downloaded ngoai that')
+                })
                 arrImages_ngoai_that.push({ src: $(images_ngoai_that[i]).attr('data-src') })
             }
 
@@ -261,6 +260,9 @@ app.post('/api/addxe', (req, res) => {
             let noi_that_html = $(body).find("div#sec_dt_05")
             let images_noi_that = $(noi_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_noi_that.length; i++) {
+                download('http://www.toyota.com.vn' + $(images_noi_that[i]).attr('data-src'), () => {
+                    console.log('Downloaded noi that')
+                })
                 arrImages_noi_that.push({ src: $(images_noi_that[i]).attr('data-src') })
             }
 
@@ -269,6 +271,7 @@ app.post('/api/addxe', (req, res) => {
                 title: $(noi_that_html).find("p.txt_dt").text(),
                 images: arrImages_noi_that
             }
+            console.log(xe.noi_that.title)
             // Tinh nang
             let tinh_nang_html = $(body).find("div#sec_dt_06")
             let tabs_tinh_nang = $(tinh_nang_html).find("ul.tabs_vanhanh li.tab a")
@@ -283,7 +286,9 @@ app.post('/api/addxe', (req, res) => {
                         title: $(inner).find(".txt1").text(),
                         description: $(inner).find(".txt2").text(),
                     })
-
+                    download('http://www.toyota.com.vn' + $(inner).find(".owl-lazy").attr("data-src"), () => {
+                        console.log('Downloaded noi that')
+                    })
                 })
 
                 xe.tinh_nang.push({
@@ -325,13 +330,11 @@ app.post('/api/addxe', (req, res) => {
                         let img = $(imgs[i]).attr('src')
                         let full_img = img.substr(0, img.indexOf('?'))
                         xe.images.push(full_img)
-                        // download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
-                        //     console.log('Downloaded ' + full_img)
-                        // })
+                        download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
+                            console.log('Downloaded ' + full_img)
+                        })
                     }
-
                     db.toyota2.insert(xe)
-
                     res.redirect('/api/addxe')
                 }
             })
