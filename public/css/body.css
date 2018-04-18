@@ -37,8 +37,19 @@ h6{
     font-size: 150%
 }
 .material-icons{
-    font-size: 100%
+    font-size: 100%;
 }
 .price{
     font-weight: bold
+}
+.contact_detail {
+    padding: 10px;
+}
+
+.contact-icons {
+    padding: 0 10px;
+    font-size: 150%;
+    position: absolute;
+    left: 8px;
+
 }
