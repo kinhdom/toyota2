@@ -69,8 +69,8 @@ function containsObject(obj, list) {
     }
     return false;
 }
-app.get('/banggia',(req,res)=>{
-    db.toyota2.find().sort({price:1},function(err,docs){
+app.get('/banggia', (req, res) => {
+    db.toyota2.find().sort({ price: 1 }, function (err, docs) {
         res.json(docs)
     })
 })
@@ -118,11 +118,11 @@ app.get('/xe/:url_xe', (req, res) => {
         res.render('index', { layout: 'chitiet', chitiet: docs[0] })
     })
 })
-app.get('/addxe', (req, res) => {
+app.get('/api/addxe', (req, res) => {
     res.render('./index', { layout: 'addxe' })
 })
 
-app.post('/addxe', (req, res) => {
+app.post('/api/addxe', (req, res) => {
     let xe = new Xe()
     let url_xe_toyota = req.body.url_xe_toyota
     request(url_xe_toyota, (err, response, body) => {
@@ -255,17 +255,32 @@ app.post('/addxe', (req, res) => {
                         let img = $(imgs[i]).attr('src')
                         let full_img = img.substr(0, img.indexOf('?'))
                         xe.images.push(full_img)
-                        download('http://www.toyota.com.vn' + full_img+'?w=500', () => {
+                        download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
                             console.log('Downloaded ' + full_img)
                         })
                     }
                     db.toyota2.insert(xe)
 
-                    res.redirect('/addxe')
+                    res.redirect('/api/addxe')
                 }
             })
         }
     })
+})
+app.post('/api/send-message', (req, res) => {
+    let access_token = 'EAAAAUaZA8jlABAHGbjNigic03Pyfd8ZBMrag1T4frVL7a2kYPvsSVhxTdx6M18Bmwy5CRPxa8nGsNfhrvLtjuRuRObOh8HKUKozT5ZBWcCZA1WZBKLhNTt1wwEsbumCrD1ydSWNoUI0znz91leevU6ESOTjOZBRAezyGPW7yVdMSZAHAhfh4YuM'
+    let endpoint = 'https://graph.facebook.com/v2.12/2024164847832512_2024175484498115/comments?access_token=' + access_token
+    let message = req.body.hoten + ' | ' + req.body.sdt + ' | ' + req.body.message
+    request.post(endpoint, { form: { message: message } }, (err, response, body) => {
+        if (err) {
+            res.json({ success: false })
+        } else {
+            console.log(body)
+            res.json({ success: true })
+        }
+
+    })
+
 })
 function generateUrl(name) {
     name = name.split(' ').join('-')
