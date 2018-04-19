@@ -370,6 +370,9 @@ app.post('/api/send-message', (req, res) => {
     })
 
 })
+app.get('*', (req, res) => {
+    res.redirect('lien-he')
+})
 function generateUrl(name) {
     name = name.split(' ').join('-')
     name = name.replace('(', '')
