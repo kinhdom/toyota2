@@ -348,7 +348,7 @@ app.post('/api/addxe', (req, res) => {
                         // }
 
                     }
-                    db.toyota.insert(xe)
+                    // db.toyota.insert(xe)
                     res.redirect('/api/addxe')
                 }
             })
