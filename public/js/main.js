@@ -9,7 +9,7 @@ $(document).ready(function () {
                 sdt: sdt,
                 message: message
             }
-            $.post('/api/send-message',msg, (msg) => {
+            $.post('/api/send-message', msg, (msg) => {
                 console.log(msg)
             })
             swal("Cảm ơn " + ho_ten, "Chúng tôi sẽ liên hệ bạn trong 24h", "success");
@@ -25,6 +25,55 @@ $(document).ready(function () {
         let formatMoney = parseInt($(arrPrice[i]).text()).formatMoney(0, '.', '.')
         $(arrPrice[i]).text(formatMoney + ' VND')
     }
+
+    setInterval(function () {
+        if ($('.callnow').hasClass('red')) {
+            $('.callnow').removeClass('red').addClass('blue')
+        } else {
+            $('.callnow').removeClass('blue').addClass('red')
+        }
+    }, 300)
+
+    $(".dropdown-trigger").dropdown();
+    $('.sidenav').sidenav();
+    $('.modal').modal({
+        preventScrolling: false,
+        onOpenStart: function () {
+            $('table').hide()
+            $.get('/banggia', function (data) {
+                let arrCar = []
+                data.forEach(car => {
+                    let price = car.price.formatMoney(0, '.', '.')
+                    let newCar = $(` 
+                <tr>
+                    <td>
+                            <a href="/xe/${car.url}"> ${car.name}        </a>
+           
+                      </td>
+                    <td class="price">${price} VND</td>
+                    <td>${car.description.so_cho_ngoi}</td>
+                </tr>
+            `)
+                    arrCar.push(newCar)
+                    $('table').show()
+                    $('.progress').removeClass('progress')
+                });
+                $('.tbodycar').html(arrCar)
+            })
+        },
+
+    });
+
+    Number.prototype.formatMoney = function (c, d, t) {
+        var n = this,
+            c = isNaN(c = Math.abs(c)) ? 2 : c,
+            d = d == undefined ? "." : d,
+            t = t == undefined ? "," : t,
+            s = n < 0 ? "-" : "",
+            i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    };
 })
 
 
