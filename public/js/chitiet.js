@@ -29,4 +29,10 @@ $(document).ready(function () {
         $('.txt-color').text(e.target.attributes[1].value)
         $('#xe').attr('src', e.target.attributes[0].value)
     })
+    if(!/\w/.test($('.title_ngoai_that').text().trim())){
+        $('#ngoai_that').hide()
+    }
+    if(!/\w/.test($('.title_noi_that').text().trim())){
+        $('#noi_that').hide()
+    }
 });

@@ -207,9 +207,9 @@ app.post('/api/addxe', (req, res) => {
             xe.price = parseInt($(body).find(".price_detail").text().split('.').join(''))
             let ogImage = $('meta[property="og:image"]').prop('content')
             xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
-            download(ogImage, () => {
-                console.log('Downloaded')
-            })
+            // download(ogImage, () => {
+            //     console.log('Downloaded')
+            // })
 
 
             let colors = $('span[data-cl]')
@@ -221,9 +221,9 @@ app.post('/api/addxe', (req, res) => {
                     value: background_color.substr(background_color.indexOf('#'), 7),
                     image: $(colors[i]).attr('data-img').substr(0, $(colors[i]).attr('data-img').indexOf('?'))
                 })
-                download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
-                    console.log('done image color')
-                })
+                // download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
+                //     console.log('done image color')
+                // })
             }
             let descriptions = $('#sec_dt_01 .txt_dt_2 span')
             let so_cho_ngoi = $(descriptions[0]).text()
@@ -244,19 +244,19 @@ app.post('/api/addxe', (req, res) => {
             let images_ngoai_that = $(ngoai_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_ngoai_that.length; i++) {
                 let img_ngoai_that = $(images_ngoai_that[i]).attr('data-src')
-                if (img_ngoai_that) {
-                    console.log(img_ngoai_that + ' img_ngoai_that')
-                    download('http://www.toyota.com.vn' + img_ngoai_that, () => {
-                        console.log('Downloaded ngoai that')
-                    })
-                }
+                // if (img_ngoai_that) {
+                //     console.log(img_ngoai_that + ' img_ngoai_that')
+                //     download('http://www.toyota.com.vn' + img_ngoai_that, () => {
+                //         console.log('Downloaded ngoai that')
+                //     })
+                // }
                 arrImages_ngoai_that.push({ src: img_ngoai_that })
             }
 
 
             xe.ngoai_that = {
                 description: $(ngoai_that_html).find("p.txt_dt_2").text(),
-                title: $(ngoai_that_html).find("p.txt_dt").text(),
+                title: $(ngoai_that_html).find("p.txt_dt").text().trim(),
                 images: arrImages_ngoai_that
             }
             // Noi That
@@ -265,18 +265,18 @@ app.post('/api/addxe', (req, res) => {
             let images_noi_that = $(noi_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_noi_that.length; i++) {
                 let img_noi_that = $(images_noi_that[i]).attr('data-src')
-                if (img_noi_that) {
-                    console.log(img_noi_that + ' img_noi_that')
-                    download('http://www.toyota.com.vn' + img_noi_that, () => {
-                        console.log('Downloaded noi that')
-                    })
-                }
+                // if (img_noi_that) {
+                //     console.log(img_noi_that + ' img_noi_that')
+                //     download('http://www.toyota.com.vn' + img_noi_that, () => {
+                //         console.log('Downloaded noi that')
+                //     })
+                // }
                 arrImages_noi_that.push({ src: img_noi_that })
             }
 
             xe.noi_that = {
                 description: $(noi_that_html).find("p.txt_dt_2").text(),
-                title: $(noi_that_html).find("p.txt_dt").text(),
+                title: $(noi_that_html).find("p.txt_dt").text().trim(),
                 images: arrImages_noi_that
             }
             // Tinh nang
@@ -294,11 +294,11 @@ app.post('/api/addxe', (req, res) => {
                         title: $(inner).find(".txt1").text(),
                         description: $(inner).find(".txt2").text(),
                     })
-                    if (img_tinh_nang) {
-                        download('http://www.toyota.com.vn' + img_tinh_nang, () => {
-                            console.log('Downloaded noi that')
-                        })
-                    }
+                    // if (img_tinh_nang) {
+                    //     download('http://www.toyota.com.vn' + img_tinh_nang, () => {
+                    //         console.log('Downloaded noi that')
+                    //     })
+                    // }
 
                 })
 
@@ -341,11 +341,11 @@ app.post('/api/addxe', (req, res) => {
                         let img = $(imgs[i]).attr('src')
                         let full_img = img.substr(0, img.indexOf('?'))
                         xe.images.push(full_img)
-                        if (full_img) {
-                            download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
-                                console.log('Downloaded thu vien ' + full_img)
-                            })
-                        }
+                        // if (full_img) {
+                        //     download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
+                        //         console.log('Downloaded thu vien ' + full_img)
+                        //     })
+                        // }
 
                     }
                     db.toyota.insert(xe)

@@ -1,9 +1,14 @@
 <div class="container">
-                <h3><%- dataDongXe.dong_xe_name %></h3>
-                <div class="divider"></div>
-                <div class="row">
-                        <% for(var i=0;i<dataDongXe.cars.length;i++){  %>
-                                <%- include('../components/xe',{car:dataDongXe.cars[i]});%>
-                            <% } %>
-                </div>
+        <blockquote>
+                <h3>
+                        <%- dataDongXe.dong_xe_name %>
+                </h3>
+        </blockquote>
+
+        <div class="divider"></div>
+        <div class="row">
+                <% for(var i=0;i<dataDongXe.cars.length;i++){  %>
+                        <%- include('../components/xe',{car:dataDongXe.cars[i]});%>
+                                <% } %>
+        </div>
 </div>

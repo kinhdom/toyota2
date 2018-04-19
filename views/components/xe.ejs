@@ -1,18 +1,27 @@
+<style>
+        .card-title{
+            font-weight: 300;
+            color: black;
+            letter-spacing: 0.1px;
+            padding: 5px;
+        }
+        .price{
+            padding: 10px;
+        }
+    </style>
 <div class="col s12 l6 m6">
     <a href="../xe/<%- car.url %>">
-        <div class="car card z-depth-2 center-align">
+        <div class="car card z-depth-2 center-align hoverable">
             <div class="card-image grey lighten-2">
                 <img src="../images<%- car.thumbnail %>">
             </div>
-            <div class="card-content red-text price">
+            <span class="card-content grey-text price">
                 <%- car.price %>
-                
-            </div>
-            <div class="card-action">
-                <span class="card-title">
-                    <%- car.name %>
-                </span>
-            </div>
+            </span>
+            <div class="divider"></div>
+            <span class="card-title">
+                <%- car.name %>
+            </span>
         </div>
     </a>
 </div>

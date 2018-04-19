@@ -2,11 +2,15 @@
     a {
         font-size: 90%
     }
+    .dong_xe_name{
+        font-weight: bold;
+        color: grey
+    }
 </style>
 <div class="card-panel">
-    <h5>
-        <i class="material-icons">filter_list</i> Các dòng xe
-    </h5>
+    <h3>
+        <i class="material-icons">filter_list</i>CÁC DÒNG XE
+    </h3>
 
     <hr>
     <table class="highlight">
@@ -19,7 +23,7 @@
             <% for(var i=0;i<arrDongXe.length;i++){ %>
                 <tr>
                     <td>
-                        <a href="./dong-xe/<%-arrDongXe[i].dong_xe_url %>">
+                        <a class="dong_xe_name" href="./dong-xe/<%-arrDongXe[i].dong_xe_url %>">
                             <i class="material-icons">keyboard_arrow_right</i>
                             <%- arrDongXe[i].dong_xe_name %>
                                 (
