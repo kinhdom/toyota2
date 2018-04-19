@@ -104,6 +104,7 @@
       $('.modal').modal({
         preventScrolling: false,
         onOpenStart: function () {
+          $('table').hide()
           $.get('/banggia', function (data) {
             let arrCar = []
             data.forEach(car => {
@@ -119,6 +120,7 @@
                 </tr>
             `)
               arrCar.push(newCar)
+              $('table').show()
               $('.progress').removeClass('progress')
             });
             $('.tbodycar').html(arrCar)
