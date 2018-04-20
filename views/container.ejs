@@ -1,15 +1,39 @@
-<div class="fixed-action-btn hide-on-large-only">
-    <a class="btn-floating btn-large red callnow" href="tel:0979674145">
-        <i class="large material-icons">phone</i>
-    </a>
-</div>
-<div class="icon-mobile hide-on-large-only">
-    <a class="telhref grey white-text" href="tel:0979674145">
-        <span class="left-align">
+<style>
+    .calnow {
+        position: fixed;
+        bottom: 5px;
+        z-index: 2;
+        border-radius: 0 50px 50px 0;
+        font-size: 15px;
 
-            <span class="red-text">GỌI NGAY</span> để nhận ưu đãi sớm nhất</span>
-    </a>
+    }
+
+    .text {
+        font-weight: bold
+    }
+
+    .icon {
+        color: white;
+        padding: 10px;
+        font-size: 300%;
+        border: 1px solid teal;
+        background: white;
+    }
+</style>
+<div class="valign-wrapper">
+    <h5>This should be vertically aligned</h5>
 </div>
+<a href="tel:0973807479">
+    <div class="row calnow red valign-wrapper">
+        <div class="col white-text text">
+            <span>Tư vấn miễn phí (24/7)
+                <br> 0973.80.74.79 (Mr.Thành)</span>
+        </div>
+        <i class="material-icons icon circle icon_callnow teal">call</i>
+
+    </div>
+
+</a>
 <div>
     <% if (layout == 'dongxe') { %>
         <%- include('layout/dongxe',{dataDongXe:dataDongXe}) %>

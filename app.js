@@ -195,7 +195,7 @@ app.post('/api/addxe', (req, res) => {
             let meta = $('meta')
             let arrMeta = []
             for (var i = 0; i < meta.length; i++) {
-                meta[i].attribs.content = meta[i].attribs.content.replace('Toyota Việt Nam', 'Toyota Gia Lai').replace('1800 1524', '0979 67 41 45')
+                meta[i].attribs.content = meta[i].attribs.content.replace('Toyota Việt Nam', 'Toyota Gia Lai').replace('1800 1524', '0973.80.74.79')
                 arrMeta.push(meta[i].attribs)
             }
             xe.arrMeta = arrMeta

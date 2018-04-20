@@ -27,10 +27,10 @@ $(document).ready(function () {
     }
 
     setInterval(function () {
-        if ($('.callnow').hasClass('red')) {
-            $('.callnow').removeClass('red').addClass('blue')
+        if ($('.icon_callnow').hasClass('lighten-2')) {
+            $('.icon_callnow').removeClass('lighten-2')
         } else {
-            $('.callnow').removeClass('blue').addClass('red')
+            $('.icon_callnow').addClass('lighten-2')
         }
     }, 300)
 
