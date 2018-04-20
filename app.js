@@ -71,46 +71,20 @@ app.get('/ho-tro-tra-gop', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    // Hiển thị xe
-    db.toyota.find({}, (err, arrXe) => {
-        let arrDongXe = []
-        arrXe.forEach(xe => {
-            let dongXe = {
-                dong_xe_name: xe.dong_xe_name,
-                dong_xe_url: xe.dong_xe_url
-            }
-            if (!containsObject(dongXe, arrDongXe)) {
-                arrDongXe.push(dongXe)
-            }
-        });
-        for (var i = 0; i < arrDongXe.length; i++) {
-            arrDongXe[i].cars = arrXe.filter(xe => xe.dong_xe_url == arrDongXe[i].dong_xe_url)
-        }
-        arrDongXe.sort(function sortDongXe(mot, hai) {
-            if (mot.cars.length > hai.cars.length) {
-                return -1
-            }
-            if (mot.cars.length < hai.cars.length) {
-                return 1
-            }
-            return 0
-        })
-        let arrMeta = [{ name: "Description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
-        { name: "Keywords", content: "toyota, toyota viet nam, xe toyota" },
-        { property: "og:url", content: "http://www.toyotagialaii.com" },
-        { property: "og:type", content: "article" },
-        { property: "og:title", content: "Trang chủ | Toyota Gia Lai" },
-        { property: "og:description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
-        { property: "og:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
-        { name: "twitter:title", content: "Trang chủ | Toyota Gia Lai" },
-        { name: "twitter:description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
-        { name: "twitter:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
-        { name: "twitter:card", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" }
-        ]
-        res.render('index', { layout: 'trangchu', arrDongXe: arrDongXe, arrMeta: arrMeta, title: 'Toyota Gia Lai' })
-
-    })
-
+    let arrDongXe = [{ "dong_xe_name": "Toyota Corolla Altis", "dong_xe_url": "toyota-corolla-altis", "cars": [{ "thumbnail": "/data/news/1758/uaxdpx.png", "price": 678000000, "name": "Corolla Altis 1.8E (MT)", "url": "corolla-altis-1-8e-mt" }, { "thumbnail": "/data/news/3131/rvj1lm.png", "price": 707000000, "name": "Corolla Altis 1.8E (CVT)", "url": "corolla-altis-1-8e-cvt" }, { "thumbnail": "/data/news/1865/gmh0as.png", "price": 753000000, "name": "Corolla Altis 1.8G (CVT)", "url": "corolla-altis-1-8g-cvt" }, { "thumbnail": "/data/news/1864/cpet54.png", "price": 864000000, "name": "Corolla Altis 2.0V(CVT)", "url": "corolla-altis-2-0v-cvt" }, { "thumbnail": "/data/news/3133/1t3znp.png", "price": 905000000, "name": "Corolla Altis 2.0V Sport", "url": "corolla-altis-2-0v-sport" }] }, { "dong_xe_name": "Toyota Innova", "dong_xe_url": "toyota-innova", "cars": [{ "thumbnail": "/data/news/1866/Innova-2-0E.png", "price": 743000000, "name": "Innova 2.0E", "url": "innova-2-0e" }, { "thumbnail": "/data/news/1867/Innova-2-0G.png", "price": 817000000, "name": "Innova 2.0G", "url": "innova-20g" }, { "thumbnail": "/data/news/3201/ldqgej.png", "price": 855000000, "name": "Innova Venturer", "url": "innova-venturer" }, { "thumbnail": "/data/news/1768/Innova-2-0V.png", "price": 945000000, "name": "Innova 2.0V", "url": "innova-2-0v" }] }, { "dong_xe_name": "Toyota Vios", "dong_xe_url": "toyota-vios", "cars": [{ "thumbnail": "/data/news/1766/wfen2o.png", "price": 513000000, "name": "Vios 1.5E (MT)", "url": "vios-1-5e-mt" }, { "thumbnail": "/data/news/1757/qegisi.png", "price": 535000000, "name": "Vios 1.5E (CVT)", "url": "vios-1-5e-cvt" }, { "thumbnail": "/data/news/1765/nd3bv1.png", "price": 565000000, "name": "Vios 1.5G (CVT)", "url": "vios-1-5g-cvt" }, { "thumbnail": "/data/news/2901/sckeqs.png", "price": 586000000, "name": "Vios TRD Sportivo", "url": "vios-trd-sportivo" }] }, { "dong_xe_name": "Toyota Fortuner", "dong_xe_url": "toyota-fortuner", "cars": [{ "thumbnail": "/data/news/2010/jc2hxv.png", "price": 981000000, "name": "Fortuner 2.4G 4x2", "url": "fortuner-2-4g-4x2" }, { "thumbnail": "/data/news/1855/opkqn2.png", "price": 1149000000, "name": "Fortuner 2.7V 4x2", "url": "fortuner-2-7v-4x2" }, { "thumbnail": "/data/news/1854/hittvx.png", "price": 1308000000, "name": "Fortuner 2.7V 4x4", "url": "fortuner-2-7v-4x4" }] }, { "dong_xe_name": "Toyota Camry", "dong_xe_url": "toyota-camry", "cars": [{ "thumbnail": "/data/news/1770/nlbdu0.png", "price": 997000000, "name": "Camry 2.0E", "url": "camry-2-0e" }, { "thumbnail": "/data/news/1767/ffxuwo.png", "price": 1161000000, "name": "Camry 2.5G", "url": "camry-25g" }, { "thumbnail": "/data/news/1764/qpixkk.png", "price": 1302000000, "name": "Camry 2.5Q", "url": "camry-2-5q" }] }, { "dong_xe_name": "Toyota Hilux", "dong_xe_url": "toyota-hilux", "cars": [{ "thumbnail": "/data/news/1872/Hilux-2-4E-4x2-MT.png", "price": 631000000, "name": "Hilux 2.4E 4x2 MT", "url": "hilux-2-4e-4x2-mt" }, { "thumbnail": "/data/news/1871/Hilux-2-8G-4x4-MT.png", "price": 775000000, "name": "Hilux 2.4G 4x4 MT", "url": "hilux-2-4g-4x4-mt" }, { "thumbnail": "/data/news/1870/4rlpjg.png", "price": 673000000, "name": "Hilux 2.4E 4x2 AT", "url": "hilux-2-4e-4x2-at" }] }, { "dong_xe_name": "Toyota Hiace", "dong_xe_url": "toyota-hiace", "cars": [{ "thumbnail": "/data/news/1874/Hiace-dong-co-xang.png", "price": 1131000000, "name": "Hiace Động cơ xăng", "url": "hiace-dong-co-xang" }, { "thumbnail": "/data/news/1873/Hiace-dong-co-dau.png", "price": 1240000000, "name": "Hiace Động cơ dầu", "url": "hiace-dong-co-dau" }] }, { "dong_xe_name": "Toyota Yaris", "dong_xe_url": "toyota-yaris", "cars": [{ "thumbnail": "/data/news/1863/YarisECVT.png", "price": 592000000, "name": "Yaris E CVT", "url": "yaris-e-cvt" }, { "thumbnail": "/data/news/1763/yarisGCVT.png", "price": 642000000, "name": "Yaris G CVT", "url": "yaris-g-cvt" }] }, { "dong_xe_name": "Toyota Land Cruiser", "dong_xe_url": "toyota-land-cruiser", "cars": [{ "thumbnail": "/data/news/1869/Land-Cruiser.png", "price": 3650000000, "name": "Land Cruiser VX", "url": "land-cruiser-vx" }] }, { "dong_xe_name": "Toyota Land Cruiser Prado", "dong_xe_url": "toyota-land-cruiser-prado", "cars": [{ "thumbnail": "/data/news/1868/4podxq.png", "price": 2262000000, "name": "Land Cruiser Prado VX", "url": "land-cruiser-prado-vx" }] }, { "dong_xe_name": "Toyota Alphard", "dong_xe_url": "toyota-alphard", "cars": [{ "thumbnail": "/data/news/3068/0l1os5.png", "price": 3533000000, "name": "Alphard", "url": "alphard" }] }]
+    let arrMeta = [{ name: "Description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
+    { name: "Keywords", content: "toyota, toyota viet nam, xe toyota" },
+    { property: "og:url", content: "http://www.toyotagialaii.com" },
+    { property: "og:type", content: "article" },
+    { property: "og:title", content: "Trang chủ | Toyota Gia Lai" },
+    { property: "og:description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
+    { property: "og:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:title", content: "Trang chủ | Toyota Gia Lai" },
+    { name: "twitter:description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
+    { name: "twitter:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
+    { name: "twitter:card", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" }
+    ]
+    res.render('index', { layout: 'trangchu', arrDongXe: arrDongXe, arrMeta: arrMeta, title: 'Toyota Gia Lai' })
 })
 function containsObject(obj, list) {
     var i;
@@ -127,24 +101,19 @@ app.get('/banggia', (req, res) => {
     })
 })
 app.get('/dong-xe/:name', (req, res) => {
-    // Hiển thị xe
     const dong_xe_url = req.params.name
-    db.toyota.find({ dong_xe_url: dong_xe_url }, (err, docs) => {
-        dataDongXe = {
-            dong_xe_url: docs[0].dong_xe_url,
-            dong_xe_name: docs[0].dong_xe_name,
-            cars: docs
-        }
-        let arrMeta = [{ name: "Keywords", content: docs[0].dong_xe_name },
-        { property: "og:url", content: 'http://www.toyotagialaii.com/' + docs[0].dong_xe_url },
+    db.toyota2.find({ dong_xe_url: dong_xe_url }, (err, docs) => {
+        let dataDongXe = docs[0]
+        let arrMeta = [{ name: "Keywords", content: dataDongXe.dong_xe_name },
+        { property: "og:url", content: 'http://www.toyotagialaii.com/' + dataDongXe.dong_xe_url },
         { property: "og:type", content: "article" },
-        { property: "og:title", content: docs[0].dong_xe_name + ' | Toyota Gia Lai' },
-        { property: "og:image", content: "http://toyotagialaii.com/images/" + docs[0].images[0] },
+        { property: "og:title", content: dataDongXe.dong_xe_name + ' | Toyota Gia Lai' },
+        { property: "og:image", content: "http://toyotagialaii.com/images/" + dataDongXe.cars[0].thumbnail },
         { name: "twitter:title", content: "Vios" },
-        { name: "twitter:image", content: "http://toyotagialaii.com/images/" + docs[0].images[0] },
-        { name: "twitter:card", content: "http://toyotagialaii.com/images/" + docs[0].images[0] },
+        { name: "twitter:image", content: "http://toyotagialaii.com/images/" + dataDongXe.cars[0].thumbnail },
+        { name: "twitter:card", content: "http://toyotagialaii.com/images/" + dataDongXe.cars[0].thumbnail },
         ]
-        res.render('index', { layout: 'dongxe', dataDongXe: dataDongXe, arrMeta: arrMeta, title: docs[0].dong_xe_name })
+        res.render('index', { layout: 'dongxe', dataDongXe: dataDongXe, arrMeta: arrMeta, title: dataDongXe.dong_xe_name })
     })
 
 
@@ -367,6 +336,50 @@ app.post('/api/send-message', (req, res) => {
             res.json({ success: true })
         }
 
+    })
+
+})
+app.get('/generate_data', (req, res) => {
+    db.toyota.find({}, (err, arrXe) => {
+        let arrDongXe = []
+        arrXe.forEach(xe => {
+            let dongXe = {
+                dong_xe_name: xe.dong_xe_name,
+                dong_xe_url: xe.dong_xe_url
+            }
+            if (!containsObject(dongXe, arrDongXe)) {
+                arrDongXe.push(dongXe)
+            }
+        });
+        for (var i = 0; i < arrDongXe.length; i++) {
+            let dongxeurl = arrDongXe[i].dong_xe_url
+            let arrXeOfDongXe = []
+            arrXe.forEach(xe => {
+                if (xe.dong_xe_url == dongxeurl) {
+
+                    arrXeOfDongXe.push({
+                        thumbnail: xe.thumbnail,
+                        price: xe.price,
+                        name: xe.name,
+                        url: xe.url
+                    })
+                }
+            })
+            arrDongXe[i].cars = arrXeOfDongXe
+        }
+        arrDongXe.sort(function sortDongXe(mot, hai) {
+            if (mot.cars.length > hai.cars.length) {
+                return -1
+            }
+            if (mot.cars.length < hai.cars.length) {
+                return 1
+            }
+            return 0
+        })
+        arrDongXe.forEach(dongXe => {
+            db.toyota2.insert(dongXe)
+        });
+        res.json(arrDongXe)
     })
 
 })
