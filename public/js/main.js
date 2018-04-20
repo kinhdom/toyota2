@@ -40,7 +40,7 @@ $(document).ready(function () {
         preventScrolling: false,
         onOpenStart: function () {
             $('table').hide()
-            $.get('/banggia', function (data) {
+            $.get('/api/banggia', function (data) {
                 let arrCar = []
                 data.forEach(car => {
                     let price = car.price.formatMoney(0, '.', '.')

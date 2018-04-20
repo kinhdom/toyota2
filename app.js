@@ -95,10 +95,23 @@ function containsObject(obj, list) {
     }
     return false;
 }
-app.get('/banggia', (req, res) => {
-    db.toyota.find().sort({ price: 1 }, function (err, docs) {
-        res.json(docs)
-    })
+app.get('/api/banggia', (req, res) => {
+    // db.toyota.find().sort({ price: 1 }, function (err, docs) {
+    //     let arrData = []
+    //     docs.forEach(xe => {
+    //         arrData.push({
+    //             name: xe.name,
+    //             price: xe.price,
+    //             description: {
+    //                 so_cho_ngoi: xe.description.so_cho_ngoi
+    //             }
+
+    //         })
+    //     });
+    //     res.json(arrData)
+    // })
+    let arrData = [{"name":"Vios 1.5E (MT)","price":513000000,"description":{"so_cho_ngoi":5}},{"name":"Vios 1.5E (CVT)","price":535000000,"description":{"so_cho_ngoi":5}},{"name":"Vios 1.5G (CVT)","price":565000000,"description":{"so_cho_ngoi":5}},{"name":"Vios TRD Sportivo","price":586000000,"description":{"so_cho_ngoi":5}},{"name":"Yaris E CVT","price":592000000,"description":{"so_cho_ngoi":5}},{"name":"Hilux 2.4E 4x2 MT","price":631000000,"description":{"so_cho_ngoi":5}},{"name":"Yaris G CVT","price":642000000,"description":{"so_cho_ngoi":5}},{"name":"Hilux 2.4E 4x2 AT","price":673000000,"description":{"so_cho_ngoi":5}},{"name":"Corolla Altis 1.8E (MT)","price":678000000,"description":{"so_cho_ngoi":5}},{"name":"Corolla Altis 1.8E (CVT)","price":707000000,"description":{"so_cho_ngoi":5}},{"name":"Innova 2.0E","price":743000000,"description":{"so_cho_ngoi":8}},{"name":"Corolla Altis 1.8G (CVT)","price":753000000,"description":{"so_cho_ngoi":5}},{"name":"Hilux 2.4G 4x4 MT","price":775000000,"description":{"so_cho_ngoi":5}},{"name":"Innova 2.0G","price":817000000,"description":{"so_cho_ngoi":8}},{"name":"Innova Venturer","price":855000000,"description":{"so_cho_ngoi":8}},{"name":"Corolla Altis 2.0V(CVT)","price":864000000,"description":{"so_cho_ngoi":5}},{"name":"Corolla Altis 2.0V Sport","price":905000000,"description":{"so_cho_ngoi":5}},{"name":"Innova 2.0V","price":945000000,"description":{"so_cho_ngoi":7}},{"name":"Fortuner 2.4G 4x2","price":981000000,"description":{"so_cho_ngoi":7}},{"name":"Camry 2.0E","price":997000000,"description":{"so_cho_ngoi":5}},{"name":"Hiace Động cơ xăng","price":1131000000,"description":{"so_cho_ngoi":16}},{"name":"Fortuner 2.7V 4x2","price":1149000000,"description":{"so_cho_ngoi":7}},{"name":"Camry 2.5G","price":1161000000,"description":{"so_cho_ngoi":5}},{"name":"Hiace Động cơ dầu","price":1240000000,"description":{"so_cho_ngoi":16}},{"name":"Camry 2.5Q","price":1302000000,"description":{"so_cho_ngoi":5}},{"name":"Fortuner 2.7V 4x4","price":1308000000,"description":{"so_cho_ngoi":7}},{"name":"Land Cruiser Prado VX","price":2262000000,"description":{"so_cho_ngoi":7}},{"name":"Alphard","price":3533000000,"description":{"so_cho_ngoi":7}},{"name":"Land Cruiser VX","price":3650000000,"description":{"so_cho_ngoi":8}}]
+    res.json(arrData)
 })
 app.get('/dong-xe/:name', (req, res) => {
     const dong_xe_url = req.params.name
@@ -384,7 +397,7 @@ app.get('/generate_data', (req, res) => {
 
 })
 app.get('*', (req, res) => {
-    res.redirect('lien-he')
+    res.redirect('/lien-he')
 })
 function generateUrl(name) {
     name = name.split(' ').join('-')
