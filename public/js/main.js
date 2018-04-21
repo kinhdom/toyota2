@@ -1,15 +1,15 @@
 $(document).ready(function () {
     $('#send').click(function () {
-        let ho_ten = $('input[id=ho_ten]').val()
-        let sdt = $('input[id=dien_thoai]').val()
-        let message = $('input[id=noi_dung]').val()
+        var ho_ten = $('input[id=ho_ten]').val();
+        var sdt = $('input[id=dien_thoai]').val()
+        var message = $('input[id=noi_dung]').val()
         if (sdt) {
-            let msg = {
+            var msg = {
                 hoten: ho_ten,
                 sdt: sdt,
                 message: message
             }
-            $.post('/api/send-message', msg, (msg) => {
+            $.post('/api/send-message', msg, function (msg) {
                 console.log(msg)
             })
             swal("Cảm ơn " + ho_ten, "Chúng tôi sẽ liên hệ bạn trong 24h", "success");
@@ -20,9 +20,9 @@ $(document).ready(function () {
     })
 
 
-    let arrPrice = $('.price')
+    var arrPrice = $('.price')
     for (var i = 0; i < arrPrice.length; i++) {
-        let formatMoney = parseInt($(arrPrice[i]).text()).formatMoney(0, '.', '.')
+        var formatMoney = parseInt($(arrPrice[i]).text()).formatMoney(0, '.', '.')
         $(arrPrice[i]).text(formatMoney + ' VND')
     }
 
@@ -41,10 +41,10 @@ $(document).ready(function () {
         onOpenStart: function () {
             $('table').hide()
             $.get('/api/banggia', function (data) {
-                let arrCar = []
-                data.forEach(car => {
-                    let price = car.price.formatMoney(0, '.', '.')
-                    let newCar = $(` 
+                var arrCar = []
+                data.forEach(function (car) {
+                    var price = car.price.formatMoney(0, '.', '.')
+                    var newCar = $(` 
                 <tr>
                     <td>
                             <a href="/xe/${car.url}"> ${car.name}        </a>
