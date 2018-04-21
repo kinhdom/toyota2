@@ -14,6 +14,8 @@ const arrXe_config = require('./arrXe')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// app.disable('etag');
+
 // Set public folder
 app.use(express.static(__dirname + '/public'));
 
@@ -85,6 +87,9 @@ app.get('/', (req, res) => {
     { name: "twitter:image", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" },
     { name: "twitter:card", content: "http://www.toyotagialaii.com/images/data/news/1766/wfen2o.png" }
     ]
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.header("Pragma", "no-cache");
+    res.header("Expires", 0);
     res.render('index', { layout: 'trangchu', arrDongXe: arrDongXe, arrMeta: arrMeta, title: 'Toyota Gia Lai' })
 })
 function containsObject(obj, list) {
