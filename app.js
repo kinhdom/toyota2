@@ -14,7 +14,7 @@ const arrXe_config = require('./arrXe')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.disable('etag');
+app.disable('etag');
 
 // Set public folder
 app.use(express.static(__dirname + '/public'));
