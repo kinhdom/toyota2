@@ -33,7 +33,7 @@ $(document).ready(function () {
             $('.icon_callnow').addClass('lighten-2')
         }
     }, 300)
-
+    $('select').formSelect();
     $(".dropdown-trigger").dropdown();
     $('.sidenav').sidenav();
     $('.modal').modal({

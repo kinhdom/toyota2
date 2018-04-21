@@ -8,7 +8,8 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const Xe = require('./xe.class')
-
+const Jimp = require("jimp");
+const arrXe_config = require('./arrXe')
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -71,7 +72,7 @@ app.get('/ho-tro-tra-gop', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    let arrDongXe = [{ "dong_xe_name": "Toyota Corolla Altis", "dong_xe_url": "toyota-corolla-altis", "cars": [{ "thumbnail": "/data/news/1758/uaxdpx.png", "price": 678000000, "name": "Corolla Altis 1.8E (MT)", "url": "corolla-altis-1-8e-mt" }, { "thumbnail": "/data/news/3131/rvj1lm.png", "price": 707000000, "name": "Corolla Altis 1.8E (CVT)", "url": "corolla-altis-1-8e-cvt" }, { "thumbnail": "/data/news/1865/gmh0as.png", "price": 753000000, "name": "Corolla Altis 1.8G (CVT)", "url": "corolla-altis-1-8g-cvt" }, { "thumbnail": "/data/news/1864/cpet54.png", "price": 864000000, "name": "Corolla Altis 2.0V(CVT)", "url": "corolla-altis-2-0v-cvt" }, { "thumbnail": "/data/news/3133/1t3znp.png", "price": 905000000, "name": "Corolla Altis 2.0V Sport", "url": "corolla-altis-2-0v-sport" }] }, { "dong_xe_name": "Toyota Innova", "dong_xe_url": "toyota-innova", "cars": [{ "thumbnail": "/data/news/1866/Innova-2-0E.png", "price": 743000000, "name": "Innova 2.0E", "url": "innova-2-0e" }, { "thumbnail": "/data/news/1867/Innova-2-0G.png", "price": 817000000, "name": "Innova 2.0G", "url": "innova-20g" }, { "thumbnail": "/data/news/3201/ldqgej.png", "price": 855000000, "name": "Innova Venturer", "url": "innova-venturer" }, { "thumbnail": "/data/news/1768/Innova-2-0V.png", "price": 945000000, "name": "Innova 2.0V", "url": "innova-2-0v" }] }, { "dong_xe_name": "Toyota Vios", "dong_xe_url": "toyota-vios", "cars": [{ "thumbnail": "/data/news/1766/wfen2o.png", "price": 513000000, "name": "Vios 1.5E (MT)", "url": "vios-1-5e-mt" }, { "thumbnail": "/data/news/1757/qegisi.png", "price": 535000000, "name": "Vios 1.5E (CVT)", "url": "vios-1-5e-cvt" }, { "thumbnail": "/data/news/1765/nd3bv1.png", "price": 565000000, "name": "Vios 1.5G (CVT)", "url": "vios-1-5g-cvt" }, { "thumbnail": "/data/news/2901/sckeqs.png", "price": 586000000, "name": "Vios TRD Sportivo", "url": "vios-trd-sportivo" }] }, { "dong_xe_name": "Toyota Fortuner", "dong_xe_url": "toyota-fortuner", "cars": [{ "thumbnail": "/data/news/2010/jc2hxv.png", "price": 981000000, "name": "Fortuner 2.4G 4x2", "url": "fortuner-2-4g-4x2" }, { "thumbnail": "/data/news/1855/opkqn2.png", "price": 1149000000, "name": "Fortuner 2.7V 4x2", "url": "fortuner-2-7v-4x2" }, { "thumbnail": "/data/news/1854/hittvx.png", "price": 1308000000, "name": "Fortuner 2.7V 4x4", "url": "fortuner-2-7v-4x4" }] }, { "dong_xe_name": "Toyota Camry", "dong_xe_url": "toyota-camry", "cars": [{ "thumbnail": "/data/news/1770/nlbdu0.png", "price": 997000000, "name": "Camry 2.0E", "url": "camry-2-0e" }, { "thumbnail": "/data/news/1767/ffxuwo.png", "price": 1161000000, "name": "Camry 2.5G", "url": "camry-25g" }, { "thumbnail": "/data/news/1764/qpixkk.png", "price": 1302000000, "name": "Camry 2.5Q", "url": "camry-2-5q" }] }, { "dong_xe_name": "Toyota Hilux", "dong_xe_url": "toyota-hilux", "cars": [{ "thumbnail": "/data/news/1872/Hilux-2-4E-4x2-MT.png", "price": 631000000, "name": "Hilux 2.4E 4x2 MT", "url": "hilux-2-4e-4x2-mt" }, { "thumbnail": "/data/news/1871/Hilux-2-8G-4x4-MT.png", "price": 775000000, "name": "Hilux 2.4G 4x4 MT", "url": "hilux-2-4g-4x4-mt" }, { "thumbnail": "/data/news/1870/4rlpjg.png", "price": 673000000, "name": "Hilux 2.4E 4x2 AT", "url": "hilux-2-4e-4x2-at" }] }, { "dong_xe_name": "Toyota Hiace", "dong_xe_url": "toyota-hiace", "cars": [{ "thumbnail": "/data/news/1874/Hiace-dong-co-xang.png", "price": 1131000000, "name": "Hiace Động cơ xăng", "url": "hiace-dong-co-xang" }, { "thumbnail": "/data/news/1873/Hiace-dong-co-dau.png", "price": 1240000000, "name": "Hiace Động cơ dầu", "url": "hiace-dong-co-dau" }] }, { "dong_xe_name": "Toyota Yaris", "dong_xe_url": "toyota-yaris", "cars": [{ "thumbnail": "/data/news/1863/YarisECVT.png", "price": 592000000, "name": "Yaris E CVT", "url": "yaris-e-cvt" }, { "thumbnail": "/data/news/1763/yarisGCVT.png", "price": 642000000, "name": "Yaris G CVT", "url": "yaris-g-cvt" }] }, { "dong_xe_name": "Toyota Land Cruiser", "dong_xe_url": "toyota-land-cruiser", "cars": [{ "thumbnail": "/data/news/1869/Land-Cruiser.png", "price": 3650000000, "name": "Land Cruiser VX", "url": "land-cruiser-vx" }] }, { "dong_xe_name": "Toyota Land Cruiser Prado", "dong_xe_url": "toyota-land-cruiser-prado", "cars": [{ "thumbnail": "/data/news/1868/4podxq.png", "price": 2262000000, "name": "Land Cruiser Prado VX", "url": "land-cruiser-prado-vx" }] }, { "dong_xe_name": "Toyota Alphard", "dong_xe_url": "toyota-alphard", "cars": [{ "thumbnail": "/data/news/3068/0l1os5.png", "price": 3533000000, "name": "Alphard", "url": "alphard" }] }]
+    let arrDongXe = arrXe_config
     let arrMeta = [{ name: "Description", content: "Toyota l&#224; thương hiệu &#244;t&#244; h&#224;ng đầu thế giới. Tại Việt Nam, Toyota cũng bắt đầu sản xuất v&#224; kinh doanh từ năm 1997 v&#224; cho đến nay vẫn l&#224; h&#227;ng xe du lịch được ưa chuộng nhất tại Việt Nam." },
     { name: "Keywords", content: "toyota, toyota viet nam, xe toyota" },
     { property: "og:url", content: "http://www.toyotagialaii.com" },
@@ -110,7 +111,7 @@ app.get('/api/banggia', (req, res) => {
     //     });
     //     res.json(arrData)
     // })
-    let arrData = [{"name":"Vios 1.5E (MT)","price":513000000,"description":{"so_cho_ngoi":5},"url":"vios-1-5e-mt"},{"name":"Vios 1.5E (CVT)","price":535000000,"description":{"so_cho_ngoi":5},"url":"vios-1-5e-cvt"},{"name":"Vios 1.5G (CVT)","price":565000000,"description":{"so_cho_ngoi":5},"url":"vios-1-5g-cvt"},{"name":"Vios TRD Sportivo","price":586000000,"description":{"so_cho_ngoi":5},"url":"vios-trd-sportivo"},{"name":"Yaris E CVT","price":592000000,"description":{"so_cho_ngoi":5},"url":"yaris-e-cvt"},{"name":"Hilux 2.4E 4x2 MT","price":631000000,"description":{"so_cho_ngoi":5},"url":"hilux-2-4e-4x2-mt"},{"name":"Yaris G CVT","price":642000000,"description":{"so_cho_ngoi":5},"url":"yaris-g-cvt"},{"name":"Hilux 2.4E 4x2 AT","price":673000000,"description":{"so_cho_ngoi":5},"url":"hilux-2-4e-4x2-at"},{"name":"Corolla Altis 1.8E (MT)","price":678000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-1-8e-mt"},{"name":"Corolla Altis 1.8E (CVT)","price":707000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-1-8e-cvt"},{"name":"Innova 2.0E","price":743000000,"description":{"so_cho_ngoi":8},"url":"innova-2-0e"},{"name":"Corolla Altis 1.8G (CVT)","price":753000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-1-8g-cvt"},{"name":"Hilux 2.4G 4x4 MT","price":775000000,"description":{"so_cho_ngoi":5},"url":"hilux-2-4g-4x4-mt"},{"name":"Innova 2.0G","price":817000000,"description":{"so_cho_ngoi":8},"url":"innova-20g"},{"name":"Innova Venturer","price":855000000,"description":{"so_cho_ngoi":8},"url":"innova-venturer"},{"name":"Corolla Altis 2.0V(CVT)","price":864000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-2-0v-cvt"},{"name":"Corolla Altis 2.0V Sport","price":905000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-2-0v-sport"},{"name":"Innova 2.0V","price":945000000,"description":{"so_cho_ngoi":7},"url":"innova-2-0v"},{"name":"Fortuner 2.4G 4x2","price":981000000,"description":{"so_cho_ngoi":7},"url":"fortuner-2-4g-4x2"},{"name":"Camry 2.0E","price":997000000,"description":{"so_cho_ngoi":5},"url":"camry-2-0e"},{"name":"Hiace Động cơ xăng","price":1131000000,"description":{"so_cho_ngoi":16},"url":"hiace-dong-co-xang"},{"name":"Fortuner 2.7V 4x2","price":1149000000,"description":{"so_cho_ngoi":7},"url":"fortuner-2-7v-4x2"},{"name":"Camry 2.5G","price":1161000000,"description":{"so_cho_ngoi":5},"url":"camry-25g"},{"name":"Hiace Động cơ dầu","price":1240000000,"description":{"so_cho_ngoi":16},"url":"hiace-dong-co-dau"},{"name":"Camry 2.5Q","price":1302000000,"description":{"so_cho_ngoi":5},"url":"camry-2-5q"},{"name":"Fortuner 2.7V 4x4","price":1308000000,"description":{"so_cho_ngoi":7},"url":"fortuner-2-7v-4x4"},{"name":"Land Cruiser Prado VX","price":2262000000,"description":{"so_cho_ngoi":7},"url":"land-cruiser-prado-vx"},{"name":"Alphard","price":3533000000,"description":{"so_cho_ngoi":7},"url":"alphard"},{"name":"Land Cruiser VX","price":3650000000,"description":{"so_cho_ngoi":8},"url":"land-cruiser-vx"}]
+    let arrData = [{ "name": "Vios 1.5E (MT)", "price": 513000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-1-5e-mt" }, { "name": "Vios 1.5E (CVT)", "price": 535000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-1-5e-cvt" }, { "name": "Vios 1.5G (CVT)", "price": 565000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-1-5g-cvt" }, { "name": "Vios TRD Sportivo", "price": 586000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-trd-sportivo" }, { "name": "Yaris E CVT", "price": 592000000, "description": { "so_cho_ngoi": 5 }, "url": "yaris-e-cvt" }, { "name": "Hilux 2.4E 4x2 MT", "price": 631000000, "description": { "so_cho_ngoi": 5 }, "url": "hilux-2-4e-4x2-mt" }, { "name": "Yaris G CVT", "price": 642000000, "description": { "so_cho_ngoi": 5 }, "url": "yaris-g-cvt" }, { "name": "Hilux 2.4E 4x2 AT", "price": 673000000, "description": { "so_cho_ngoi": 5 }, "url": "hilux-2-4e-4x2-at" }, { "name": "Corolla Altis 1.8E (MT)", "price": 678000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-1-8e-mt" }, { "name": "Corolla Altis 1.8E (CVT)", "price": 707000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-1-8e-cvt" }, { "name": "Innova 2.0E", "price": 743000000, "description": { "so_cho_ngoi": 8 }, "url": "innova-2-0e" }, { "name": "Corolla Altis 1.8G (CVT)", "price": 753000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-1-8g-cvt" }, { "name": "Hilux 2.4G 4x4 MT", "price": 775000000, "description": { "so_cho_ngoi": 5 }, "url": "hilux-2-4g-4x4-mt" }, { "name": "Innova 2.0G", "price": 817000000, "description": { "so_cho_ngoi": 8 }, "url": "innova-20g" }, { "name": "Innova Venturer", "price": 855000000, "description": { "so_cho_ngoi": 8 }, "url": "innova-venturer" }, { "name": "Corolla Altis 2.0V(CVT)", "price": 864000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-2-0v-cvt" }, { "name": "Corolla Altis 2.0V Sport", "price": 905000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-2-0v-sport" }, { "name": "Innova 2.0V", "price": 945000000, "description": { "so_cho_ngoi": 7 }, "url": "innova-2-0v" }, { "name": "Fortuner 2.4G 4x2", "price": 981000000, "description": { "so_cho_ngoi": 7 }, "url": "fortuner-2-4g-4x2" }, { "name": "Camry 2.0E", "price": 997000000, "description": { "so_cho_ngoi": 5 }, "url": "camry-2-0e" }, { "name": "Hiace Động cơ xăng", "price": 1131000000, "description": { "so_cho_ngoi": 16 }, "url": "hiace-dong-co-xang" }, { "name": "Fortuner 2.7V 4x2", "price": 1149000000, "description": { "so_cho_ngoi": 7 }, "url": "fortuner-2-7v-4x2" }, { "name": "Camry 2.5G", "price": 1161000000, "description": { "so_cho_ngoi": 5 }, "url": "camry-25g" }, { "name": "Hiace Động cơ dầu", "price": 1240000000, "description": { "so_cho_ngoi": 16 }, "url": "hiace-dong-co-dau" }, { "name": "Camry 2.5Q", "price": 1302000000, "description": { "so_cho_ngoi": 5 }, "url": "camry-2-5q" }, { "name": "Fortuner 2.7V 4x4", "price": 1308000000, "description": { "so_cho_ngoi": 7 }, "url": "fortuner-2-7v-4x4" }, { "name": "Land Cruiser Prado VX", "price": 2262000000, "description": { "so_cho_ngoi": 7 }, "url": "land-cruiser-prado-vx" }, { "name": "Alphard", "price": 3533000000, "description": { "so_cho_ngoi": 7 }, "url": "alphard" }, { "name": "Land Cruiser VX", "price": 3650000000, "description": { "so_cho_ngoi": 8 }, "url": "land-cruiser-vx" }]
     res.json(arrData)
 })
 app.get('/dong-xe/:name', (req, res) => {
@@ -131,12 +132,16 @@ app.get('/dong-xe/:name', (req, res) => {
 
 
 })
-
-
 app.get('/downloadimage', (req, res) => {
-    download('http://www.toyota.com.vn/data/news/1766/_3/thumb_1ucm0s.png?w=334&h=240&mode=crop', () => {
-        console.log('done')
-    })
+    Jimp.read('http://www.toyota.com.vn/data/news/3201/ldqgej.png', function (err, lenna) {
+        if (err) throw err;
+        console.log('Nen ....')
+        lenna.resize(300, Jimp.AUTO)                    // set greyscale 
+            .write('huy.jpg'); // save 
+    });
+    // download('/images/data/news/3201/ldqgej.png', () => {
+    //     console.log('done')
+    // })
     res.json({ a: 3 })
 })
 var download = function (uri, callback) {
@@ -151,9 +156,19 @@ var download = function (uri, callback) {
         shell.mkdir('-p', dir);
     }
     let fullPath = dir + filename
-    request.head(uri, function (err, res, body) {
-        request(uri).pipe(fs.createWriteStream(fullPath)).on('close', callback);
+    let fullPathJpg = fullPath.replace('.png', '.jpg')
+    console.log(fullPathJpg)
+    Jimp.read(uri, function (err, lenna) {
+        if (err) throw err;
+        console.log('Nen ....')
+        lenna.resize(300, Jimp.AUTO)            // resize 
+            .quality(60)                 // set JPEG quality 
+            .greyscale()                 // set greyscale 
+            .write(fullPathJpg); // save 
     });
+    // request.head(uri, function (err, res, body) {
+    //     request(uri).pipe(fs.createWriteStream(fullPath)).on('close', callback);
+    // });
 };
 
 app.get('/xe/:url_xe', (req, res) => {
@@ -188,11 +203,13 @@ app.post('/api/addxe', (req, res) => {
             xe.name = $(body).find("#spTitleCar").text()
             xe.price = parseInt($(body).find(".price_detail").text().split('.').join(''))
             let ogImage = $('meta[property="og:image"]').prop('content')
-            xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
-            // download(ogImage, () => {
-            //     console.log('Downloaded')
-            // })
 
+            download(ogImage, () => {
+                console.log('Downloaded')
+            })
+
+            xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
+            xe.thumbnail = xe.thumbnail.replace('.png', '.jpg')
 
             let colors = $('span[data-cl]')
             for (var i = 0; i < colors.length; i++) {
@@ -203,9 +220,10 @@ app.post('/api/addxe', (req, res) => {
                     value: background_color.substr(background_color.indexOf('#'), 7),
                     image: $(colors[i]).attr('data-img').substr(0, $(colors[i]).attr('data-img').indexOf('?'))
                 })
-                // download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
-                //     console.log('done image color')
-                // })
+                download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
+                    console.log('done image color')
+                })
+
             }
             let descriptions = $('#sec_dt_01 .txt_dt_2 span')
             let so_cho_ngoi = $(descriptions[0]).text()
@@ -226,16 +244,14 @@ app.post('/api/addxe', (req, res) => {
             let images_ngoai_that = $(ngoai_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_ngoai_that.length; i++) {
                 let img_ngoai_that = $(images_ngoai_that[i]).attr('data-src')
-                // if (img_ngoai_that) {
-                //     console.log(img_ngoai_that + ' img_ngoai_that')
-                //     download('http://www.toyota.com.vn' + img_ngoai_that, () => {
-                //         console.log('Downloaded ngoai that')
-                //     })
-                // }
+                if (img_ngoai_that) {
+                    console.log(img_ngoai_that + ' img_ngoai_that')
+                    download('http://www.toyota.com.vn' + img_ngoai_that, () => {
+                        console.log('Downloaded ngoai that')
+                    })
+                }
                 arrImages_ngoai_that.push({ src: img_ngoai_that })
             }
-
-
             xe.ngoai_that = {
                 description: $(ngoai_that_html).find("p.txt_dt_2").text(),
                 title: $(ngoai_that_html).find("p.txt_dt").text().trim(),
@@ -247,12 +263,12 @@ app.post('/api/addxe', (req, res) => {
             let images_noi_that = $(noi_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_noi_that.length; i++) {
                 let img_noi_that = $(images_noi_that[i]).attr('data-src')
-                // if (img_noi_that) {
-                //     console.log(img_noi_that + ' img_noi_that')
-                //     download('http://www.toyota.com.vn' + img_noi_that, () => {
-                //         console.log('Downloaded noi that')
-                //     })
-                // }
+                if (img_noi_that) {
+                    console.log(img_noi_that + ' img_noi_that')
+                    download('http://www.toyota.com.vn' + img_noi_that, () => {
+                        console.log('Downloaded noi that')
+                    })
+                }
                 arrImages_noi_that.push({ src: img_noi_that })
             }
 
@@ -276,11 +292,11 @@ app.post('/api/addxe', (req, res) => {
                         title: $(inner).find(".txt1").text(),
                         description: $(inner).find(".txt2").text(),
                     })
-                    // if (img_tinh_nang) {
-                    //     download('http://www.toyota.com.vn' + img_tinh_nang, () => {
-                    //         console.log('Downloaded noi that')
-                    //     })
-                    // }
+                    if (img_tinh_nang) {
+                        download('http://www.toyota.com.vn' + img_tinh_nang, () => {
+                            console.log('Downloaded noi that')
+                        })
+                    }
 
                 })
 
@@ -323,14 +339,13 @@ app.post('/api/addxe', (req, res) => {
                         let img = $(imgs[i]).attr('src')
                         let full_img = img.substr(0, img.indexOf('?'))
                         xe.images.push(full_img)
-                        // if (full_img) {
-                        //     download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
-                        //         console.log('Downloaded thu vien ' + full_img)
-                        //     })
-                        // }
-
+                        if (full_img) {
+                            download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
+                                console.log('Downloaded thu vien ' + full_img)
+                            })
+                        }
                     }
-                    // db.toyota.insert(xe)
+                    db.toyota3.insert(xe)
                     res.redirect('/api/addxe')
                 }
             })
@@ -369,7 +384,7 @@ app.get('/generate_xe', (req, res) => {
     })
 })
 app.get('/generate_data', (req, res) => {
-    db.toyota.find({}, (err, arrXe) => {
+    db.toyota3.find({}, (err, arrXe) => {
         let arrDongXe = []
         arrXe.forEach(xe => {
             let dongXe = {
@@ -412,9 +427,9 @@ app.get('/generate_data', (req, res) => {
     })
 
 })
-app.get('*', (req, res) => {
-    res.redirect('/lien-he')
-})
+// app.get('*', (req, res) => {
+//     res.redirect('/lien-he')
+// })
 function generateUrl(name) {
     name = name.split(' ').join('-')
     name = name.replace('(', '')
