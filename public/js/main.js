@@ -23,7 +23,6 @@ $(document).ready(function () {
     var arrPrice = $('.price')
     for (var i = 0; i < arrPrice.length; i++) {
         let money = $(arrPrice[i]).text().trim()
-        console.log(parseInt(money))
         if(parseInt(money)){
             var formatMoney = parseInt(money).formatMoney(0, '.', '.')
             $(arrPrice[i]).text(formatMoney + ' VND')
