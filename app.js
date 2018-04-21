@@ -110,7 +110,7 @@ app.get('/api/banggia', (req, res) => {
     //     });
     //     res.json(arrData)
     // })
-    let arrData = [{"name":"Vios 1.5E (MT)","price":513000000,"description":{"so_cho_ngoi":5}},{"name":"Vios 1.5E (CVT)","price":535000000,"description":{"so_cho_ngoi":5}},{"name":"Vios 1.5G (CVT)","price":565000000,"description":{"so_cho_ngoi":5}},{"name":"Vios TRD Sportivo","price":586000000,"description":{"so_cho_ngoi":5}},{"name":"Yaris E CVT","price":592000000,"description":{"so_cho_ngoi":5}},{"name":"Hilux 2.4E 4x2 MT","price":631000000,"description":{"so_cho_ngoi":5}},{"name":"Yaris G CVT","price":642000000,"description":{"so_cho_ngoi":5}},{"name":"Hilux 2.4E 4x2 AT","price":673000000,"description":{"so_cho_ngoi":5}},{"name":"Corolla Altis 1.8E (MT)","price":678000000,"description":{"so_cho_ngoi":5}},{"name":"Corolla Altis 1.8E (CVT)","price":707000000,"description":{"so_cho_ngoi":5}},{"name":"Innova 2.0E","price":743000000,"description":{"so_cho_ngoi":8}},{"name":"Corolla Altis 1.8G (CVT)","price":753000000,"description":{"so_cho_ngoi":5}},{"name":"Hilux 2.4G 4x4 MT","price":775000000,"description":{"so_cho_ngoi":5}},{"name":"Innova 2.0G","price":817000000,"description":{"so_cho_ngoi":8}},{"name":"Innova Venturer","price":855000000,"description":{"so_cho_ngoi":8}},{"name":"Corolla Altis 2.0V(CVT)","price":864000000,"description":{"so_cho_ngoi":5}},{"name":"Corolla Altis 2.0V Sport","price":905000000,"description":{"so_cho_ngoi":5}},{"name":"Innova 2.0V","price":945000000,"description":{"so_cho_ngoi":7}},{"name":"Fortuner 2.4G 4x2","price":981000000,"description":{"so_cho_ngoi":7}},{"name":"Camry 2.0E","price":997000000,"description":{"so_cho_ngoi":5}},{"name":"Hiace Động cơ xăng","price":1131000000,"description":{"so_cho_ngoi":16}},{"name":"Fortuner 2.7V 4x2","price":1149000000,"description":{"so_cho_ngoi":7}},{"name":"Camry 2.5G","price":1161000000,"description":{"so_cho_ngoi":5}},{"name":"Hiace Động cơ dầu","price":1240000000,"description":{"so_cho_ngoi":16}},{"name":"Camry 2.5Q","price":1302000000,"description":{"so_cho_ngoi":5}},{"name":"Fortuner 2.7V 4x4","price":1308000000,"description":{"so_cho_ngoi":7}},{"name":"Land Cruiser Prado VX","price":2262000000,"description":{"so_cho_ngoi":7}},{"name":"Alphard","price":3533000000,"description":{"so_cho_ngoi":7}},{"name":"Land Cruiser VX","price":3650000000,"description":{"so_cho_ngoi":8}}]
+    let arrData = [{"name":"Vios 1.5E (MT)","price":513000000,"description":{"so_cho_ngoi":5},"url":"vios-1-5e-mt"},{"name":"Vios 1.5E (CVT)","price":535000000,"description":{"so_cho_ngoi":5},"url":"vios-1-5e-cvt"},{"name":"Vios 1.5G (CVT)","price":565000000,"description":{"so_cho_ngoi":5},"url":"vios-1-5g-cvt"},{"name":"Vios TRD Sportivo","price":586000000,"description":{"so_cho_ngoi":5},"url":"vios-trd-sportivo"},{"name":"Yaris E CVT","price":592000000,"description":{"so_cho_ngoi":5},"url":"yaris-e-cvt"},{"name":"Hilux 2.4E 4x2 MT","price":631000000,"description":{"so_cho_ngoi":5},"url":"hilux-2-4e-4x2-mt"},{"name":"Yaris G CVT","price":642000000,"description":{"so_cho_ngoi":5},"url":"yaris-g-cvt"},{"name":"Hilux 2.4E 4x2 AT","price":673000000,"description":{"so_cho_ngoi":5},"url":"hilux-2-4e-4x2-at"},{"name":"Corolla Altis 1.8E (MT)","price":678000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-1-8e-mt"},{"name":"Corolla Altis 1.8E (CVT)","price":707000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-1-8e-cvt"},{"name":"Innova 2.0E","price":743000000,"description":{"so_cho_ngoi":8},"url":"innova-2-0e"},{"name":"Corolla Altis 1.8G (CVT)","price":753000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-1-8g-cvt"},{"name":"Hilux 2.4G 4x4 MT","price":775000000,"description":{"so_cho_ngoi":5},"url":"hilux-2-4g-4x4-mt"},{"name":"Innova 2.0G","price":817000000,"description":{"so_cho_ngoi":8},"url":"innova-20g"},{"name":"Innova Venturer","price":855000000,"description":{"so_cho_ngoi":8},"url":"innova-venturer"},{"name":"Corolla Altis 2.0V(CVT)","price":864000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-2-0v-cvt"},{"name":"Corolla Altis 2.0V Sport","price":905000000,"description":{"so_cho_ngoi":5},"url":"corolla-altis-2-0v-sport"},{"name":"Innova 2.0V","price":945000000,"description":{"so_cho_ngoi":7},"url":"innova-2-0v"},{"name":"Fortuner 2.4G 4x2","price":981000000,"description":{"so_cho_ngoi":7},"url":"fortuner-2-4g-4x2"},{"name":"Camry 2.0E","price":997000000,"description":{"so_cho_ngoi":5},"url":"camry-2-0e"},{"name":"Hiace Động cơ xăng","price":1131000000,"description":{"so_cho_ngoi":16},"url":"hiace-dong-co-xang"},{"name":"Fortuner 2.7V 4x2","price":1149000000,"description":{"so_cho_ngoi":7},"url":"fortuner-2-7v-4x2"},{"name":"Camry 2.5G","price":1161000000,"description":{"so_cho_ngoi":5},"url":"camry-25g"},{"name":"Hiace Động cơ dầu","price":1240000000,"description":{"so_cho_ngoi":16},"url":"hiace-dong-co-dau"},{"name":"Camry 2.5Q","price":1302000000,"description":{"so_cho_ngoi":5},"url":"camry-2-5q"},{"name":"Fortuner 2.7V 4x4","price":1308000000,"description":{"so_cho_ngoi":7},"url":"fortuner-2-7v-4x4"},{"name":"Land Cruiser Prado VX","price":2262000000,"description":{"so_cho_ngoi":7},"url":"land-cruiser-prado-vx"},{"name":"Alphard","price":3533000000,"description":{"so_cho_ngoi":7},"url":"alphard"},{"name":"Land Cruiser VX","price":3650000000,"description":{"so_cho_ngoi":8},"url":"land-cruiser-vx"}]
     res.json(arrData)
 })
 app.get('/dong-xe/:name', (req, res) => {
@@ -351,6 +351,22 @@ app.post('/api/send-message', (req, res) => {
 
     })
 
+})
+app.get('/generate_xe', (req, res) => {
+    db.toyota.find().sort({ price: 1 }, (err, docs) => {
+        let arrXe = []
+        docs.forEach(xe => {
+            arrXe.push({
+                name: xe.name,
+                price: xe.price,
+                description: {
+                    so_cho_ngoi: xe.description.so_cho_ngoi
+                },
+                url: xe.url
+            })
+        });
+        res.json(arrXe)
+    })
 })
 app.get('/generate_data', (req, res) => {
     db.toyota.find({}, (err, arrXe) => {
