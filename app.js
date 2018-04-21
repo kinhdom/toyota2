@@ -132,6 +132,9 @@ app.get('/dong-xe/:name', (req, res) => {
         { name: "twitter:image", content: "http://toyotagialaii.com/images/" + dataDongXe.cars[0].thumbnail },
         { name: "twitter:card", content: "http://toyotagialaii.com/images/" + dataDongXe.cars[0].thumbnail },
         ]
+        res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.header("Pragma", "no-cache");
+        res.header("Expires", 0);
         res.render('index', { layout: 'dongxe', dataDongXe: dataDongXe, arrMeta: arrMeta, title: dataDongXe.dong_xe_name })
     })
 
