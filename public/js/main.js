@@ -22,8 +22,15 @@ $(document).ready(function () {
 
     var arrPrice = $('.price')
     for (var i = 0; i < arrPrice.length; i++) {
-        var formatMoney = parseInt($(arrPrice[i]).text()).formatMoney(0, '.', '.')
-        $(arrPrice[i]).text(formatMoney + ' VND')
+        let money = $(arrPrice[i]).text().trim()
+        console.log(parseInt(money))
+        if(parseInt(money)){
+            var formatMoney = parseInt(money).formatMoney(0, '.', '.')
+            $(arrPrice[i]).text(formatMoney + ' VND')
+        }else{
+            $(arrPrice[i]).text(money)
+        }
+        
     }
 
     setInterval(function () {
@@ -43,7 +50,10 @@ $(document).ready(function () {
             $.get('/api/banggia', function (data) {
                 var arrCar = []
                 data.forEach(function (car) {
-                    var price = car.price.formatMoney(0, '.', '.')
+                    var price = car.price
+                    if(typeof price == 'number'){
+                        var price = car.price.formatMoney(0, '.', '.')
+                    }
                     var newCar = $(` 
                 <tr>
                     <td>

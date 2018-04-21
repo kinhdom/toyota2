@@ -10,6 +10,7 @@ const shell = require('shelljs');
 const Xe = require('./xe.class')
 const Jimp = require("jimp");
 const arrXe_config = require('./arrXe')
+const arrXeBangGia = require('./arrXeBangGia.js')
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -116,7 +117,7 @@ app.get('/api/banggia', (req, res) => {
     //     });
     //     res.json(arrData)
     // })
-    let arrData = [{ "name": "Vios 1.5E (MT)", "price": 513000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-1-5e-mt" }, { "name": "Vios 1.5E (CVT)", "price": 535000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-1-5e-cvt" }, { "name": "Vios 1.5G (CVT)", "price": 565000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-1-5g-cvt" }, { "name": "Vios TRD Sportivo", "price": 586000000, "description": { "so_cho_ngoi": 5 }, "url": "vios-trd-sportivo" }, { "name": "Yaris E CVT", "price": 592000000, "description": { "so_cho_ngoi": 5 }, "url": "yaris-e-cvt" }, { "name": "Hilux 2.4E 4x2 MT", "price": 631000000, "description": { "so_cho_ngoi": 5 }, "url": "hilux-2-4e-4x2-mt" }, { "name": "Yaris G CVT", "price": 642000000, "description": { "so_cho_ngoi": 5 }, "url": "yaris-g-cvt" }, { "name": "Hilux 2.4E 4x2 AT", "price": 673000000, "description": { "so_cho_ngoi": 5 }, "url": "hilux-2-4e-4x2-at" }, { "name": "Corolla Altis 1.8E (MT)", "price": 678000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-1-8e-mt" }, { "name": "Corolla Altis 1.8E (CVT)", "price": 707000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-1-8e-cvt" }, { "name": "Innova 2.0E", "price": 743000000, "description": { "so_cho_ngoi": 8 }, "url": "innova-2-0e" }, { "name": "Corolla Altis 1.8G (CVT)", "price": 753000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-1-8g-cvt" }, { "name": "Hilux 2.4G 4x4 MT", "price": 775000000, "description": { "so_cho_ngoi": 5 }, "url": "hilux-2-4g-4x4-mt" }, { "name": "Innova 2.0G", "price": 817000000, "description": { "so_cho_ngoi": 8 }, "url": "innova-20g" }, { "name": "Innova Venturer", "price": 855000000, "description": { "so_cho_ngoi": 8 }, "url": "innova-venturer" }, { "name": "Corolla Altis 2.0V(CVT)", "price": 864000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-2-0v-cvt" }, { "name": "Corolla Altis 2.0V Sport", "price": 905000000, "description": { "so_cho_ngoi": 5 }, "url": "corolla-altis-2-0v-sport" }, { "name": "Innova 2.0V", "price": 945000000, "description": { "so_cho_ngoi": 7 }, "url": "innova-2-0v" }, { "name": "Fortuner 2.4G 4x2", "price": 981000000, "description": { "so_cho_ngoi": 7 }, "url": "fortuner-2-4g-4x2" }, { "name": "Camry 2.0E", "price": 997000000, "description": { "so_cho_ngoi": 5 }, "url": "camry-2-0e" }, { "name": "Hiace Động cơ xăng", "price": 1131000000, "description": { "so_cho_ngoi": 16 }, "url": "hiace-dong-co-xang" }, { "name": "Fortuner 2.7V 4x2", "price": 1149000000, "description": { "so_cho_ngoi": 7 }, "url": "fortuner-2-7v-4x2" }, { "name": "Camry 2.5G", "price": 1161000000, "description": { "so_cho_ngoi": 5 }, "url": "camry-25g" }, { "name": "Hiace Động cơ dầu", "price": 1240000000, "description": { "so_cho_ngoi": 16 }, "url": "hiace-dong-co-dau" }, { "name": "Camry 2.5Q", "price": 1302000000, "description": { "so_cho_ngoi": 5 }, "url": "camry-2-5q" }, { "name": "Fortuner 2.7V 4x4", "price": 1308000000, "description": { "so_cho_ngoi": 7 }, "url": "fortuner-2-7v-4x4" }, { "name": "Land Cruiser Prado VX", "price": 2262000000, "description": { "so_cho_ngoi": 7 }, "url": "land-cruiser-prado-vx" }, { "name": "Alphard", "price": 3533000000, "description": { "so_cho_ngoi": 7 }, "url": "alphard" }, { "name": "Land Cruiser VX", "price": 3650000000, "description": { "so_cho_ngoi": 8 }, "url": "land-cruiser-vx" }]
+    let arrData = arrXeBangGia
     res.json(arrData)
 })
 app.get('/dong-xe/:name', (req, res) => {
@@ -212,9 +213,9 @@ app.post('/api/addxe', (req, res) => {
             xe.price = parseInt($(body).find(".price_detail").text().split('.').join(''))
             let ogImage = $('meta[property="og:image"]').prop('content')
 
-            download(ogImage, () => {
-                console.log('Downloaded')
-            })
+            // download(ogImage, () => {
+            //     console.log('Downloaded')
+            // })
 
             xe.thumbnail = ogImage.replace('http://www.toyota.com.vn', '')
             xe.thumbnail = xe.thumbnail.replace('.png', '.jpg')
@@ -228,9 +229,9 @@ app.post('/api/addxe', (req, res) => {
                     value: background_color.substr(background_color.indexOf('#'), 7),
                     image: $(colors[i]).attr('data-img').substr(0, $(colors[i]).attr('data-img').indexOf('?'))
                 })
-                download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
-                    console.log('done image color')
-                })
+                // download('http://www.toyota.com.vn' + $(colors[i]).attr('data-img'), () => {
+                //     console.log('done image color')
+                // })
 
             }
             let descriptions = $('#sec_dt_01 .txt_dt_2 span')
@@ -252,12 +253,12 @@ app.post('/api/addxe', (req, res) => {
             let images_ngoai_that = $(ngoai_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_ngoai_that.length; i++) {
                 let img_ngoai_that = $(images_ngoai_that[i]).attr('data-src')
-                if (img_ngoai_that) {
-                    console.log(img_ngoai_that + ' img_ngoai_that')
-                    download('http://www.toyota.com.vn' + img_ngoai_that, () => {
-                        console.log('Downloaded ngoai that')
-                    })
-                }
+                // if (img_ngoai_that) {
+                //     console.log(img_ngoai_that + ' img_ngoai_that')
+                //     download('http://www.toyota.com.vn' + img_ngoai_that, () => {
+                //         console.log('Downloaded ngoai that')
+                //     })
+                // }
                 arrImages_ngoai_that.push({ src: img_ngoai_that })
             }
             xe.ngoai_that = {
@@ -271,12 +272,12 @@ app.post('/api/addxe', (req, res) => {
             let images_noi_that = $(noi_that_html).find("img.owl-lazy")
             for (var i = 0; i < images_noi_that.length; i++) {
                 let img_noi_that = $(images_noi_that[i]).attr('data-src')
-                if (img_noi_that) {
-                    console.log(img_noi_that + ' img_noi_that')
-                    download('http://www.toyota.com.vn' + img_noi_that, () => {
-                        console.log('Downloaded noi that')
-                    })
-                }
+                // if (img_noi_that) {
+                //     console.log(img_noi_that + ' img_noi_that')
+                //     download('http://www.toyota.com.vn' + img_noi_that, () => {
+                //         console.log('Downloaded noi that')
+                //     })
+                // }
                 arrImages_noi_that.push({ src: img_noi_that })
             }
 
@@ -300,11 +301,11 @@ app.post('/api/addxe', (req, res) => {
                         title: $(inner).find(".txt1").text(),
                         description: $(inner).find(".txt2").text(),
                     })
-                    if (img_tinh_nang) {
-                        download('http://www.toyota.com.vn' + img_tinh_nang, () => {
-                            console.log('Downloaded noi that')
-                        })
-                    }
+                    // if (img_tinh_nang) {
+                    //     download('http://www.toyota.com.vn' + img_tinh_nang, () => {
+                    //         console.log('Downloaded noi that')
+                    //     })
+                    // }
 
                 })
 
@@ -347,11 +348,11 @@ app.post('/api/addxe', (req, res) => {
                         let img = $(imgs[i]).attr('src')
                         let full_img = img.substr(0, img.indexOf('?'))
                         xe.images.push(full_img)
-                        if (full_img) {
-                            download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
-                                console.log('Downloaded thu vien ' + full_img)
-                            })
-                        }
+                        // if (full_img) {
+                        //     download('http://www.toyota.com.vn' + full_img + '?w=500', () => {
+                        //         console.log('Downloaded thu vien ' + full_img)
+                        //     })
+                        // }
                     }
                     db.toyota3.insert(xe)
                     res.redirect('/api/addxe')
@@ -376,7 +377,7 @@ app.post('/api/send-message', (req, res) => {
 
 })
 app.get('/generate_xe', (req, res) => {
-    db.toyota.find().sort({ price: 1 }, (err, docs) => {
+    db.toyota3.find().sort({ price: 1 }, (err, docs) => {
         let arrXe = []
         docs.forEach(xe => {
             arrXe.push({
@@ -419,18 +420,9 @@ app.get('/generate_data', (req, res) => {
             })
             arrDongXe[i].cars = arrXeOfDongXe
         }
-        arrDongXe.sort(function sortDongXe(mot, hai) {
-            if (mot.cars.length > hai.cars.length) {
-                return -1
-            }
-            if (mot.cars.length < hai.cars.length) {
-                return 1
-            }
-            return 0
-        })
-        arrDongXe.forEach(dongXe => {
-            db.toyota2.insert(dongXe)
-        });
+        // arrDongXe.forEach(dongXe => {
+        //     db.toyota2.insert(dongXe)
+        // });
         res.json(arrDongXe)
     })
 
