@@ -34,7 +34,7 @@ const arrXe_config = [
         "dong_xe_url":"toyota-hilux",
         "cars":[  
            {  
-              "thumbnail":"/thumbnail/hilux-2-8G-4x4-AT.png",
+              "thumbnail":"/thumbnail/hilux-2-8G-4x4-AT.jpg",
               "price":"Giá xin liên hệ",
               "name":"Hilux 2.8G 4x4 AT",
               "url":"hilux-2-4e-4x2-mt"
@@ -76,7 +76,7 @@ const arrXe_config = [
               "url":"vios-1-5g-cvt"
            },
            {  
-              "thumbnail":"/data/news/2901/sckeqs.png",
+              "thumbnail":"/data/news/2901/sckeqs.jpg",
               "price":586000000,
               "name":"Vios TRD Sportivo",
               "url":"vios-trd-sportivo"
@@ -100,7 +100,7 @@ const arrXe_config = [
               "url":"innova-20g"
            },
            {  
-              "thumbnail":"/data/news/3201/ldqgej.png",
+              "thumbnail":"/data/news/3201/ldqgej.jpg",
               "price":855000000,
               "name":"Innova Venturer",
               "url":"innova-venturer"
@@ -118,31 +118,31 @@ const arrXe_config = [
         "dong_xe_url":"toyota-corolla-altis",
         "cars":[  
            {  
-              "thumbnail":"/thumbnail/corolla-altis1-8e-mt.png",
+              "thumbnail":"/thumbnail/corolla-altis1-8e-mt.jpg",
               "price":678000000,
               "name":"Corolla Altis 1.8E (MT)",
               "url":"corolla-altis-1-8e-mt"
            },
            {  
-              "thumbnail":"/thumbnail/corolla-altis1-8E-CVT.png",
+              "thumbnail":"/thumbnail/corolla-altis1-8E-CVT.jpg",
               "price":707000000,
               "name":"Corolla Altis 1.8E (CVT)",
               "url":"corolla-altis-1-8e-cvt"
            },
            {  
-              "thumbnail":"/thumbnail/corolla-altis-1-8G-CVT.png",
+              "thumbnail":"/thumbnail/corolla-altis-1-8G-CVT.jpg",
               "price":753000000,
               "name":"Corolla Altis 1.8G (CVT)",
               "url":"corolla-altis-1-8g-cvt"
            },
            {  
-              "thumbnail":"/thumbnail/corolla-altis-2-0V-CVT.png",
+              "thumbnail":"/thumbnail/corolla-altis-2-0V-CVT.jpg",
               "price":864000000,
               "name":"Corolla Altis 2.0V(CVT)",
               "url":"corolla-altis-2-0v-cvt"
            },
            {  
-              "thumbnail":"/thumbnail/corolla-altis-2-0V-port.png",
+              "thumbnail":"/thumbnail/corolla-altis-2-0V-port.jpg",
               "price":905000000,
               "name":"Corolla Altis 2.0V Sport",
               "url":"corolla-altis-2-0v-sport"
@@ -208,7 +208,7 @@ const arrXe_config = [
         "dong_xe_url":"toyota-alphard",
         "cars":[  
            {  
-              "thumbnail":"/data/news/3068/0l1os5.png",
+              "thumbnail":"/data/news/3068/0l1os5.jpg",
               "price":3533000000,
               "name":"Alphard",
               "url":"alphard"
@@ -232,13 +232,13 @@ const arrXe_config = [
         "dong_xe_url":"toyota-yaris",
         "cars":[  
            {  
-              "thumbnail":"/thumbnail/yaris-g-cvt.png",
+              "thumbnail":"/thumbnail/yaris-g-cvt.jpg",
               "price":592000000,
               "name":"Yaris E CVT",
               "url":"yaris-e-cvt"
            },
            {  
-              "thumbnail":"/thumbnail/yaris-g-cvt.png",
+              "thumbnail":"/thumbnail/yaris-g-cvt.jpg",
               "price":642000000,
               "name":"Yaris G CVT",
               "url":"yaris-g-cvt"
