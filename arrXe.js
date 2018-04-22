@@ -35,7 +35,7 @@ const arrXe_config = [
         "cars":[  
            {  
               "thumbnail":"/thumbnail/hilux-2-8G-4x4-AT.png",
-              "price":631000000,
+              "price":"Giá xin liên hệ",
               "name":"Hilux 2.8G 4x4 AT",
               "url":"hilux-2-4e-4x2-mt"
            },
