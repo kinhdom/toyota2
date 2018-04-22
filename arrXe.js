@@ -34,7 +34,7 @@ const arrXe_config = [
         "dong_xe_url":"toyota-hilux",
         "cars":[  
            {  
-              "thumbnail":"/data/news/1872/Hilux-2-4E-4x2-MT.jpg",
+              "thumbnail":"/thumbnail/hilux-2-8G-4x4-AT.png",
               "price":631000000,
               "name":"Hilux 2.8G 4x4 AT",
               "url":"hilux-2-4e-4x2-mt"
@@ -118,31 +118,31 @@ const arrXe_config = [
         "dong_xe_url":"toyota-corolla-altis",
         "cars":[  
            {  
-              "thumbnail":"/data/news/1758/uaxdpx.jpg",
+              "thumbnail":"/thumbnail/corolla-altis1-8e-mt.png",
               "price":678000000,
               "name":"Corolla Altis 1.8E (MT)",
               "url":"corolla-altis-1-8e-mt"
            },
            {  
-              "thumbnail":"/data/news/3131/rvj1lm.jpg",
+              "thumbnail":"/thumbnail/corolla-altis1-8E-CVT.png",
               "price":707000000,
               "name":"Corolla Altis 1.8E (CVT)",
               "url":"corolla-altis-1-8e-cvt"
            },
            {  
-              "thumbnail":"/data/news/1865/gmh0as.jpg",
+              "thumbnail":"/thumbnail/corolla-altis-1-8G-CVT.png",
               "price":753000000,
               "name":"Corolla Altis 1.8G (CVT)",
               "url":"corolla-altis-1-8g-cvt"
            },
            {  
-              "thumbnail":"/data/news/1864/cpet54.jpg",
+              "thumbnail":"/thumbnail/corolla-altis-2-0V-CVT.png",
               "price":864000000,
               "name":"Corolla Altis 2.0V(CVT)",
               "url":"corolla-altis-2-0v-cvt"
            },
            {  
-              "thumbnail":"/data/news/3133/1t3znp.jpg",
+              "thumbnail":"/thumbnail/corolla-altis-2-0V-port.png",
               "price":905000000,
               "name":"Corolla Altis 2.0V Sport",
               "url":"corolla-altis-2-0v-sport"

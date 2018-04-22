@@ -122,7 +122,7 @@ app.get('/api/banggia', (req, res) => {
 })
 app.get('/dong-xe/:name', (req, res) => {
     const dong_xe_url = req.params.name
-    db.toyota2.find({ dong_xe_url: dong_xe_url }, (err, docs) => {
+    db.toyota_dongxe.find({ dong_xe_url: dong_xe_url }, (err, docs) => {
         let dataDongXe = docs[0]
         let arrMeta = [{ name: "Keywords", content: dataDongXe.dong_xe_name },
         { property: "og:url", content: 'http://www.toyotagialaii.com/' + dataDongXe.dong_xe_url },
@@ -181,7 +181,7 @@ var download = function (uri, callback) {
 };
 
 app.get('/xe/:url_xe', (req, res) => {
-    db.toyota3.find({ url: req.params.url_xe }, (err, docs) => {
+    db.toyota_xe.find({ url: req.params.url_xe }, (err, docs) => {
         res.render('index', { layout: 'chitiet', chitiet: docs[0], arrMeta: docs[0].arrMeta, title: docs[0].name })
     })
 })
@@ -354,7 +354,7 @@ app.post('/api/addxe', (req, res) => {
                         //     })
                         // }
                     }
-                    db.toyota3.insert(xe)
+                    db.toyota_xe.insert(xe)
                     res.redirect('/api/addxe')
                 }
             })
@@ -377,7 +377,7 @@ app.post('/api/send-message', (req, res) => {
 
 })
 app.get('/generate_xe', (req, res) => {
-    db.toyota3.find().sort({ price: 1 }, (err, docs) => {
+    db.toyota_xe.find().sort({ price: 1 }, (err, docs) => {
         let arrXe = []
         docs.forEach(xe => {
             arrXe.push({
@@ -393,7 +393,7 @@ app.get('/generate_xe', (req, res) => {
     })
 })
 app.get('/generate_data', (req, res) => {
-    db.toyota3.find({}, (err, arrXe) => {
+    db.toyota_xe.find({}, (err, arrXe) => {
         let arrDongXe = []
         arrXe.forEach(xe => {
             let dongXe = {
@@ -421,7 +421,7 @@ app.get('/generate_data', (req, res) => {
             arrDongXe[i].cars = arrXeOfDongXe
         }
         // arrDongXe.forEach(dongXe => {
-        //     db.toyota2.insert(dongXe)
+        //     db.toyota_dongxe.insert(dongXe)
         // });
         res.json(arrDongXe)
     })
