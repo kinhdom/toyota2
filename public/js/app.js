@@ -140,9 +140,8 @@ setInterval(() => {
     j = i % 4
     image.fadeOut('slow', function () {
         image.attr('src', arrImageSlider[j]);
-        image.fadeIn('fast');
-        i++
+        image.fadeIn('slow');
+        i++;
     });
-}, 2000);
-
+}, 4000);
 });
