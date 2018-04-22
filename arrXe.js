@@ -232,13 +232,13 @@ const arrXe_config = [
         "dong_xe_url":"toyota-yaris",
         "cars":[  
            {  
-              "thumbnail":"/data/news/1863/YarisECVT.jpg",
+              "thumbnail":"/thumbnail/yaris-g-cvt.png",
               "price":592000000,
               "name":"Yaris E CVT",
               "url":"yaris-e-cvt"
            },
            {  
-              "thumbnail":"/data/news/1763/yarisGCVT.jpg",
+              "thumbnail":"/thumbnail/yaris-g-cvt.png",
               "price":642000000,
               "name":"Yaris G CVT",
               "url":"yaris-g-cvt"
