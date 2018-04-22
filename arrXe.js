@@ -10,7 +10,7 @@ const arrXe_config = [
               "url":"fortuner-2-4g-4x2"
            },
            {  
-              "thumbnail":"/data/news/2010/jc2hxv.jpg",
+              "thumbnail":"/thumbnail/fortuner-2-4g.jpg",
               "price":"Giá xin liên hệ",
               "name":"Fortuner 2.4G 4x2 AT",
               "url":"fortuner-2-4g-4x2-at"
