@@ -181,7 +181,7 @@ var download = function (uri, callback) {
 };
 
 app.get('/xe/:url_xe', (req, res) => {
-    db.toyota.find({ url: req.params.url_xe }, (err, docs) => {
+    db.toyota3.find({ url: req.params.url_xe }, (err, docs) => {
         res.render('index', { layout: 'chitiet', chitiet: docs[0], arrMeta: docs[0].arrMeta, title: docs[0].name })
     })
 })
